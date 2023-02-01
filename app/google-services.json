@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "93827341856",
+    "project_id": "rateandchat",
+    "storage_bucket": "rateandchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93827341856:android:14fa83784173cace83e645",
+        "android_client_info": {
+          "package_name": "com.example.rateandchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93827341856-9iahk6oa9jpc3h0acrtajokfh773l9et.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSst6w6xqGTo97gOgdvMyBwwmXUYSuBu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93827341856-9iahk6oa9jpc3h0acrtajokfh773l9et.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
