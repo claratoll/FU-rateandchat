@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
 
         val createButton = findViewById<Button>(R.id.toCreateAccountButton)
         createButton.setOnClickListener {
@@ -22,9 +24,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        //jag ska kolla och skriva en tävling/quiz aktivitet
-        // comment
-
 
     }
 }

@@ -21,6 +21,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
         //login to app
         auth = Firebase.auth
 
@@ -52,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful){
                 Log.d("!!!", "login success")
                 Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show()
-                //goToAddActivity()
 
             } else {
                 Log.d("!!!", "user not created ${task.exception}")
