@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         //jag ska kolla och skriva en tävling/quiz aktivitet
+        // comment
 
 
     }
