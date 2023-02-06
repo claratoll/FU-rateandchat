@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        //jag ska kolla och skriva en tävling/quiz aktivitet
 
 
     }
