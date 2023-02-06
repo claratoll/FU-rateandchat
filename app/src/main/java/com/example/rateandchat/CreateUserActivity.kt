@@ -19,6 +19,9 @@ class CreateUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
         //login to app
         auth = Firebase.auth
 
@@ -42,12 +45,10 @@ class CreateUserActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
             if (task.isSuccessful){
                 Log.d("!!!", "create success")
-                //goToAddActivity()
+
             } else {
                 Log.d("!!!", "user not created ${task.exception}")
             }
         }
     }
 }
-
-//Här är jag Sita
