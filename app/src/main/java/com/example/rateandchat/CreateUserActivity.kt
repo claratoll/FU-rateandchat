@@ -1,5 +1,6 @@
 package com.example.rateandchat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -42,11 +43,16 @@ class CreateUserActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
             if (task.isSuccessful){
                 Log.d("!!!", "create success")
+                goToDashBoardActivity()
                 //goToAddActivity()
             } else {
                 Log.d("!!!", "user not created ${task.exception}")
             }
         }
+    }
+    fun goToDashBoardActivity (){
+        val intent = Intent(this, DashBoardActivity::class.java)
+        startActivity(intent)
     }
 }
 
