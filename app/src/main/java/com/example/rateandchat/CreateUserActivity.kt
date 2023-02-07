@@ -1,5 +1,6 @@
 package com.example.rateandchat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -46,9 +47,15 @@ class CreateUserActivity : AppCompatActivity() {
             if (task.isSuccessful){
                 Log.d("!!!", "create success")
 
+                goToDashBoardActivity()
+
             } else {
                 Log.d("!!!", "user not created ${task.exception}")
             }
         }
+    }
+    fun goToDashBoardActivity (){
+        val intent = Intent(this, DashBoardActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -1,8 +1,10 @@
 package com.example.rateandchat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -56,11 +58,19 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("!!!", "login success")
                 Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show()
 
+                goToDashBoardActivity()
+
+
             } else {
                 Log.d("!!!", "user not created ${task.exception}")
                 Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show()
 
             }
         }
+    }
+
+    fun goToDashBoardActivity (){
+        val intent = Intent(this, DashBoardActivity::class.java)
+        startActivity(intent)
     }
 }
