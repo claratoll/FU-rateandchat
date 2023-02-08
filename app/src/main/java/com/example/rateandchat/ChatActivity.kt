@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
+// 1 on 1 chatroom
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var chatRecyclerView: RecyclerView

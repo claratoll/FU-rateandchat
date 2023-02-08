@@ -1,9 +1,8 @@
 package com.example.rateandchat
 
-import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.User
@@ -14,20 +13,18 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
+class UserListActivity : AppCompatActivity() {
 
-// Shows all users as chat contact list. Click on a user to start chatting (opens chat activity).
-class ChatApp : AppCompatActivity() {
-
-    private lateinit var userRecyclerView: RecyclerView
+    private lateinit var userRecyclerView : RecyclerView
     private lateinit var userList: ArrayList<User>
-    private lateinit var adapter: UserAdapter // build UserAdapter from chat app
-    private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
-    private lateinit var usersRef: CollectionReference
-    //@SuppressLint("MissingInflatedId")
+    private lateinit var adapter : UserAdapter
+    private lateinit var auth : FirebaseAuth
+    private lateinit var db : FirebaseFirestore
+    private lateinit var usersRef : CollectionReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_app)
+        setContentView(R.layout.activity_user_list)
 
         auth = FirebaseAuth.getInstance()
         db = Firebase.firestore
@@ -36,7 +33,7 @@ class ChatApp : AppCompatActivity() {
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
 
-        userRecyclerView = findViewById(R.id.userRecyclerView)//missinflated ID added, but do not understand why it's needed.
+        userRecyclerView = findViewById(R.id.userRecyclerView)
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
@@ -57,6 +54,5 @@ class ChatApp : AppCompatActivity() {
             }
 
         }
-
     }
 }
