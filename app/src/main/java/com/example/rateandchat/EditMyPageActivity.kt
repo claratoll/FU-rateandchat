@@ -15,6 +15,7 @@ class EditMyPageActivity : AppCompatActivity() {
     lateinit var userImage : ImageView
     lateinit var userName : EditText
     private var imageUri : Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_my_page)
