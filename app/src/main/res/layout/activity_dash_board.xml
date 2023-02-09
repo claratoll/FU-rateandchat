@@ -82,6 +82,18 @@
         app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
 
     <Button
+
+        android:id="@+id/ChatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:onClick="openChatActivity"
+        android:text="Chat"
+        app:layout_constraintEnd_toStartOf="@+id/SportsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
+        
+    <Button
         android:id="@+id/myPageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,4 +114,5 @@
         android:text="log out"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

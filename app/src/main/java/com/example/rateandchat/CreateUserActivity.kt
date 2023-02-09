@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class CreateUserActivity : AppCompatActivity() {
@@ -15,6 +20,8 @@ class CreateUserActivity : AppCompatActivity() {
     lateinit var auth : FirebaseAuth
     lateinit var emailView : EditText
     lateinit var passwordView : EditText
+    lateinit var db : FirebaseFirestore
+    lateinit var usersRef : CollectionReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +32,10 @@ class CreateUserActivity : AppCompatActivity() {
 
         //login to app
         auth = Firebase.auth
+
+        // Initialize firestore
+        db = Firebase.firestore
+        usersRef = db.collection("Users")
 
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
@@ -46,7 +57,8 @@ class CreateUserActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
             if (task.isSuccessful){
                 Log.d("!!!", "create success")
-
+                addUserToDatabase(email, auth.currentUser?.uid!!)
+                Log.d("createdUid", "User created with uid: ${auth.currentUser!!.uid}")
                 goToDashBoardActivity()
 
             } else {
@@ -57,5 +69,16 @@ class CreateUserActivity : AppCompatActivity() {
     fun goToDashBoardActivity (){
         val intent = Intent(this, DashBoardActivity::class.java)
         startActivity(intent)
+    }
+
+    // Adds user to firestore with its own uid (from auth.currentUser.uid)
+    private fun addUserToDatabase(/*name : String, */email : String, uid : String) {
+        usersRef.add(User(/*name, */email, uid))
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(this@CreateUserActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this@CreateUserActivity, "Error handling document", Toast.LENGTH_SHORT).show()
+            }
     }
 }

@@ -48,4 +48,9 @@ class DashBoardActivity : AppCompatActivity() {
         val intent = Intent(this, SportsActivity::class.java)
         startActivity(intent)
     }
+
+    fun openChatActivity (view: View) {
+        val intent = Intent(this, UserListActivity::class.java)
+        startActivity(intent)
+    }
 }
