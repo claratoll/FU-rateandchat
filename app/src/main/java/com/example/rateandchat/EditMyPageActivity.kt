@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -23,16 +24,10 @@ class EditMyPageActivity : AppCompatActivity() {
         userImage = findViewById(R.id.pickImageIV)
         userName = findViewById(R.id.userNameET)
 
-        userImage.setOnClickListener{
-            imagePicker()
-        }
-        val saveButton = findViewById<Button>(R.id.saveButton)
-        saveButton.setOnClickListener{
-            saveInfo()
-        }
+
     }
 
-    fun imagePicker(){
+    fun imagePicker (view: View){
        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(gallery, 100)
     }
@@ -45,7 +40,7 @@ class EditMyPageActivity : AppCompatActivity() {
         }
     }
 
-    fun saveInfo(){
+    fun saveInfo (view: View){
         val name = userName.text.toString()
         val intent = Intent(this, MyPageActivity::class.java)
         intent.putExtra("KEY", name)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8ECAE6"
+    android:background="@color/light_blue"
     tools:context=".DashBoardActivity">
 
     <ImageView
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toStartOf="@+id/SportsButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
-        
+
     <Button
         android:id="@+id/myPageButton"
         android:layout_width="wrap_content"

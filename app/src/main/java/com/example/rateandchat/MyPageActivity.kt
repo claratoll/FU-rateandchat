@@ -21,12 +21,12 @@ class MyPageActivity : AppCompatActivity() {
         val getName = intent.getStringExtra("KEY")
         personName.text = getName
 
-        val doneButton = findViewById<Button>(R.id.doneButton)
-        doneButton.setOnClickListener{
-            val intent = Intent(this, DashBoardActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+    }
+
+    fun doneButton (view: View){
+        val intent = Intent(this, DashBoardActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     fun editMyPageActivity(view: View){

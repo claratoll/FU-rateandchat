@@ -26,7 +26,6 @@ class DashBoardActivity : AppCompatActivity() {
     fun openMyPageActivity (view: View){
         val intent = Intent(this, MyPageActivity::class.java)
         startActivity(intent)
-        finish()
     }
     fun openMoviesActivity (view : View){
         val intent = Intent(this, MoviesActivity::class.java)

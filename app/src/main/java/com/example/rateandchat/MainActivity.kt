@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,17 +26,15 @@ class MainActivity : AppCompatActivity() {
         //gömmer Action Bar längst upp
         supportActionBar?.hide()
 
-        val createButton = findViewById<Button>(R.id.toCreateAccountButton)
-        createButton.setOnClickListener {
-            val intent = Intent(this, CreateUserActivity::class.java)
-            startActivity(intent)
-        }
+    }
 
-        val loginButton = findViewById<Button>(R.id.toLoginActivityButton)
-        loginButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
+    fun createButton (view : View){
+        val intent = Intent(this, CreateUserActivity::class.java)
+        startActivity(intent)
+    }
 
+    fun loginButton (view : View) {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
