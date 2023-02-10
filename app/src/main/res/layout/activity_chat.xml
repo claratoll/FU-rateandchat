@@ -48,7 +48,7 @@
             android:layout_width="83dp"
             android:layout_height="50dp"
             android:layout_weight="20"
-            android:src="@drawable/baseline_send_24" />
+            android:src="@drawable/baseline_send_twentyfour" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
