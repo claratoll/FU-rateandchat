@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -40,13 +41,9 @@ class CreateUserActivity : AppCompatActivity() {
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
 
-        val signUpButton = findViewById<Button>(R.id.createUserButton)
-        signUpButton.setOnClickListener {
-            signUp()
-        }
     }
 
-    fun signUp(){
+    fun signUp (view: View){
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
 

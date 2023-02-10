@@ -32,13 +32,10 @@ class LoginActivity : AppCompatActivity() {
         emailView = findViewById(R.id.loginEditEmailText)
         passwordView = findViewById(R.id.loginEditPasswordText)
 
-        val signInButton = findViewById<Button>(R.id.logInButton)
-        signInButton.setOnClickListener {
-            logIn()
-        }
+
     }
 
-    fun logIn() {
+    fun logIn (view: View) {
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
 
