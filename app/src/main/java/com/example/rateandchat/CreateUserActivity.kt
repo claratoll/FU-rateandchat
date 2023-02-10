@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 class CreateUserActivity : AppCompatActivity() {
 
     lateinit var auth : FirebaseAuth
+    lateinit var nameView : EditText
     lateinit var emailView : EditText
     lateinit var passwordView : EditText
     lateinit var db : FirebaseFirestore
@@ -38,23 +39,25 @@ class CreateUserActivity : AppCompatActivity() {
         db = Firebase.firestore
         usersRef = db.collection("Users")
 
+        nameView = findViewById(R.id.createNameEditView)
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
 
     }
 
     fun signUp (view: View){
+        val name = nameView.text.toString()
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty() || name.isEmpty()) {
             return
         }
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
             if (task.isSuccessful){
                 Log.d("!!!", "create success")
-                addUserToDatabase(email, auth.currentUser?.uid!!)
+                addUserToDatabase(name, email, auth.currentUser?.uid!!)
                 Log.d("createdUid", "User created with uid: ${auth.currentUser!!.uid}")
                 goToDashBoardActivity()
 
@@ -69,8 +72,8 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     // Adds user to firestore with its own uid (from auth.currentUser.uid)
-    private fun addUserToDatabase(/*name : String, */email : String, uid : String) {
-        usersRef.add(User(/*name, */email, uid))
+    private fun addUserToDatabase(name : String, email : String, uid : String) {
+        usersRef.add(User(name, email, uid))
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this@CreateUserActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
             }
