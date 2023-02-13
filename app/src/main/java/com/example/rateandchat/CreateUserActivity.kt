@@ -39,6 +39,7 @@ class CreateUserActivity : AppCompatActivity() {
         db = Firebase.firestore
         usersRef = db.collection("Users")
 
+        nameView = findViewById(R.id.createNameEditView)
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
         nameView = findViewById(R.id.createEditName)
@@ -46,6 +47,7 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun signUp (view: View){
+        val name = nameView.text.toString()
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
         val name = nameView.text.toString()
