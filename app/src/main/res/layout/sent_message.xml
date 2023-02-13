@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginEnd="20dp"
         android:background="@drawable/edt_background"
         app:flow_horizontalAlign="end"

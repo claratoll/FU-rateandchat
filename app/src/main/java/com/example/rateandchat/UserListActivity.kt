@@ -26,6 +26,9 @@ class UserListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
         auth = FirebaseAuth.getInstance()
         db = Firebase.firestore
         usersRef = db.collection("Users")

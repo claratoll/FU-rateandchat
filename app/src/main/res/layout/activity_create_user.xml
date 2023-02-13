@@ -8,6 +8,18 @@
     tools:context=".CreateUserActivity">
 
     <EditText
+        android:id="@+id/createEditName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/createEditEmailView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
         android:id="@+id/createEditEmailView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -15,6 +15,9 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dash_board)
         auth = Firebase.auth
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
     }
     fun logOutButton(view: View){
         auth.signOut()
