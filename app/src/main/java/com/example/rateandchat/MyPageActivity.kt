@@ -17,6 +17,9 @@ class MyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
         personName = findViewById(R.id.noNameTV)
         val getName = intent.getStringExtra("KEY")
         personName.text = getName
