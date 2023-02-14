@@ -59,6 +59,7 @@ class ChatActivity : AppCompatActivity() {
         // adding data to recycler view
 
         messagesRef.document(senderRoom!!).collection("Messages")
+            .orderBy("timestamp")
             .addSnapshotListener() { snapshot, e ->
                 messageList.clear()
                 if (snapshot != null) {
