@@ -30,6 +30,9 @@
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
+            android:name=".ChatAppActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditMyPageActivity"
             android:exported="false">
             <meta-data
