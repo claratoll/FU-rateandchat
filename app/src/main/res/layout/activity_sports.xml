@@ -26,6 +26,7 @@
         android:id="@+id/toGuessSeasonActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:onClick="openGuessSeasonActivity"
         android:text="to Guess Season"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +44,13 @@
         tools:listitem="@layout/list_item" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/guessResultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="testToGuessActivity"
-        android:text="Test to guess"
+        android:text="to guess result"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
