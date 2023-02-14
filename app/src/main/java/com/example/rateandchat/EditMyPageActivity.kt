@@ -21,6 +21,9 @@ class EditMyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_my_page)
 
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
+
         userImage = findViewById(R.id.pickImageIV)
         userName = findViewById(R.id.userNameET)
 

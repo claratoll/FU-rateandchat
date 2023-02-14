@@ -7,5 +7,8 @@ class TvSeriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tv_series)
+
+        //gömmer Action Bar längst upp
+        supportActionBar?.hide()
     }
 }

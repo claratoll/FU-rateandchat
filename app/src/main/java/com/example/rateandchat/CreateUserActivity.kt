@@ -42,6 +42,7 @@ class CreateUserActivity : AppCompatActivity() {
         nameView = findViewById(R.id.createNameEditView)
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
+        //nameView = findViewById(R.id.createEditName)
 
     }
 

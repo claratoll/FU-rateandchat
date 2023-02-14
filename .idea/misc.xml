@@ -3,13 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_chat.xml" value="0.13134057971014493" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_chat_app.xml" value="0.13134057971014493" />
         <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_create_user.xml" value="0.1691995947315096" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_dash_board.xml" value="0.13134057971014493" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_edit_my_page.xml" value="0.13134057971014493" />
         <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_login.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_main.xml" value="0.3484375" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_movies.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_my_page.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_season_guess.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_sports.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_tv_programs.xml" value="0.3161953727506427" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_tv_series.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_user_list.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/activity_video_games.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/list_item.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/received_message.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/sent_message.xml" value="0.3625" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/team_item.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/clara/AndroidStudioProjects/RateAndChat/app/src/main/res/layout/user_layout.xml" value="0.3625" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

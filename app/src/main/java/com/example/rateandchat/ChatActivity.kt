@@ -33,6 +33,8 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+
+
         val name = intent.getStringExtra("name")
         val receiverUid = intent.getStringExtra("uid")
 
