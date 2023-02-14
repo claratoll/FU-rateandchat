@@ -18,4 +18,10 @@ class SportsActivity : AppCompatActivity() {
         val intent = Intent(this, SeasonGuessActivity::class.java)
         startActivity(intent)
     }
+
+    //skapa bara för att prova gå vidare till gissning
+    fun testToGuessActivity (view : View){
+        val intent = Intent(this, GuessResultActivity::class.java)
+        startActivity(intent)
+    }
 }
