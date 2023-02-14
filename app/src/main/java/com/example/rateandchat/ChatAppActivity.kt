@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 
 
 // Shows all users as chat contact list. Click on a user to start chatting (opens chat activity).
-class ChatApp : AppCompatActivity() {
+class ChatAppActivity : AppCompatActivity() {
 
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userList: ArrayList<User>
