@@ -18,11 +18,12 @@
         app:srcCompat="@drawable/shl" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teamrecyclerview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveSeasonGuessButton"
         tools:listitem="@layout/team_item" />
 
     <Button
