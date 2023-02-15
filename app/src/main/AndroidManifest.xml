@@ -15,6 +15,7 @@
         <activity
             android:name=".GeneralChatActivity"
             android:exported="false" />
+        <activity
             android:name=".TvProgramInfo"
             android:exported="false">
             <meta-data
