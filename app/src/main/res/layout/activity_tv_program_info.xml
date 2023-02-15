@@ -33,14 +33,13 @@
 
     <TextView
         android:id="@+id/descriptionTV"
-        android:layout_width="390dp"
-        android:layout_height="250dp"
+        android:layout_width="337dp"
+        android:layout_height="181dp"
         android:layout_marginTop="25dp"
         android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageIV" />
 
@@ -60,11 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="30dp"
         android:text="Chat"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/programVoteButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
