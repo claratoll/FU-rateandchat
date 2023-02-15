@@ -19,8 +19,9 @@ class TvProgramsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.tvProgramRV)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = TvProgramAdapter(this, TvProgramDataManager.tvPrograms)
         db = Firebase.firestore
-        val docRef = db.collection("Tv programs")
+        /*val docRef = db.collection("Tv programs")
         docRef.get().addOnSuccessListener { documentSnapShot->
             for (document in documentSnapShot.documents){
                 val tvProgram = document.toObject<TvProgram>()
@@ -28,9 +29,8 @@ class TvProgramsActivity : AppCompatActivity() {
                     TvProgramDataManager.tvPrograms.add(tvProgram)
                 }
             }
-            recyclerView.adapter = TvProgramAdapter(this, TvProgramDataManager.tvPrograms)
 
-        }
+        }*/
 
 
         //gömmer Action Bar längst upp
@@ -59,8 +59,8 @@ object TvProgramDataManager {
             " and the prize money"
 
     init {
-       // tvPrograms.add(TvProgram("Idol", R.drawable.idol, idolDescription))
-       // tvPrograms.add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
+       tvPrograms.add(TvProgram("Idol", R.drawable.idol, idolDescription))
+       tvPrograms.add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
         //val db : FirebaseFirestore = Firebase.firestore
         //db.collection("Tv programs").add(TvProgram("Idol", R.drawable.idol, idolDescription))
        // db.collection("Tv programs").add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
