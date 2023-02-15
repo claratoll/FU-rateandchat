@@ -2,19 +2,47 @@ package com.example.rateandchat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.rateandchat.R
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.Team
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 class SeasonGuessActivity : AppCompatActivity() {
 
     val listOfTeams = mutableListOf<Team>()
 
+    private lateinit var db: FirebaseFirestore
+
+    private var leagueID = ""
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter : TeamRecyclerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_guess)
 
+        db = Firebase.firestore
+
         //gömmer Action Bar längst upp
         supportActionBar?.hide()
+
+        recyclerView = findViewById(R.id.teamrecyclerview)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter = TeamRecyclerAdapter(this, listOfTeams)
+        recyclerView.adapter = adapter
+
+        getTeamData()
+
+        //tillfälligt
+        leagueID = "SHL"
+
+       // leagueID = intent.getStringExtra("documentID")!!
     }
 
 
@@ -32,30 +60,26 @@ class SeasonGuessActivity : AppCompatActivity() {
     }
 
     private fun getTeamData(){
-        /*db.collection("meals")
+        db.collection("Team")
                 .addSnapshotListener { snapshot, e ->
-                    mealList.clear()
+                    listOfTeams.clear()
                     if (snapshot != null) {
-                        val mealArray = mutableListOf<Meal>()
+                        val teamArray = mutableListOf<Team>()
                         for (document in snapshot.documents) {
-                            val mealDoc = document.toObject<Meal>()
-                            if (mealDoc != null) {
-                                Log.v("!!!", "meal: ${mealDoc.restaurantID}")
-                                if (mealDoc.restaurantID.equals(restaurantId)){
-                                mealArray.add(mealDoc)
+                            val teamDoc = document.toObject<Team>()
+                            if (teamDoc != null) {
+                                Log.v("!!!", "team: ${teamDoc.league}")
+                                if (teamDoc.league.equals(leagueID)){
+                                teamArray.add(teamDoc)
                                 }
                             } else {
 
                                 Log.v("!!!", "no images")
                             }
                         }
-                        mealList.addAll(mealArray)
+                        listOfTeams.addAll(teamArray)
                         adapter.notifyDataSetChanged()
-
                     }
-        }*/
+        }
     }
-
-
-
 }

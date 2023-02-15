@@ -6,6 +6,7 @@ import com.google.firebase.firestore.DocumentId
 data class League(
     @DocumentId val documentId: String = "",
     var leagueName : String? = null,
-    var leagueLogo : Image? =null
-
+    var leagueLogo : String? =null,
+    var numberOfTeams : Int? = null,
+    var glideImageUrl: String? = ""
     )
