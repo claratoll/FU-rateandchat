@@ -3,6 +3,7 @@ package com.example.rateandchat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.Team
@@ -31,7 +32,7 @@ class SeasonGuessActivity : AppCompatActivity() {
         //gömmer Action Bar längst upp
         supportActionBar?.hide()
 
-        recyclerView = findViewById(R.id.teamrecyclerview)
+        recyclerView = findViewById(R.id.teamRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = TeamRecyclerAdapter(this, listOfTeams)
@@ -40,7 +41,7 @@ class SeasonGuessActivity : AppCompatActivity() {
         getTeamData()
 
         //tillfälligt
-        leagueID = "SHL"
+        leagueID = "SDHL"
 
        // leagueID = intent.getStringExtra("documentID")!!
     }
@@ -57,6 +58,14 @@ class SeasonGuessActivity : AppCompatActivity() {
 
     fun saveToFirebase(){
         //and then the user uploads his results to the firebase
+    }
+
+    fun moveUpClick(view: View){
+        Log.v("!!!", "move up")
+    }
+
+    fun moveDownClick(view: View){
+        Log.v("!!!", "move down")
     }
 
     private fun getTeamData(){
@@ -77,6 +86,10 @@ class SeasonGuessActivity : AppCompatActivity() {
                                 Log.v("!!!", "no images")
                             }
                         }
+
+                        teamArray.sortBy { it.teamNumber }
+
+
                         listOfTeams.addAll(teamArray)
                         adapter.notifyDataSetChanged()
                     }
