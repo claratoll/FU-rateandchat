@@ -4,18 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/light_blue"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, welcome to our chat app!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/toLoginActivityButton"
@@ -26,17 +16,67 @@
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
 
     <Button
         android:id="@+id/toCreateAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:onClick="createButton"
         android:text="create account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toLoginActivityButton" />
+
+    <TextView
+        android:id="@+id/googleLogIn"
+        android:layout_width="281dp"
+        android:layout_height="41dp"
+        android:background="@drawable/rectangle"
+        android:elegantTextHeight="true"
+        android:text="Sing in with Google"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toCreateAccountButton"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="224dp"
+        app:layout_constraintBottom_toBottomOf="@+id/googleLogIn"
+        app:layout_constraintEnd_toEndOf="@+id/googleLogIn"
+        app:layout_constraintTop_toTopOf="@+id/googleLogIn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/google" />
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="332dp"
+        android:layout_height="384dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118"
+        app:srcCompat="@drawable/welcome" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="150dp"
+        android:layout_height="148dp"
+        app:layout_constraintBottom_toBottomOf="@+id/logoImage"
+        app:layout_constraintEnd_toEndOf="@+id/logoImage"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logoImage"
+        app:srcCompat="@drawable/welcomelogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
