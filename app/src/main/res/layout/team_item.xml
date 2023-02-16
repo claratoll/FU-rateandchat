@@ -35,21 +35,26 @@
         app:layout_constraintStart_toEndOf="@+id/teamlogoImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/voteUpButton"
+    <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="up"
+        android:layout_marginEnd="10dp"
+        android:onClick="moveUpClick"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/voteDownButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vote_up" />
 
-    <Button
-        android:id="@+id/voteDownButton"
+    <ImageButton
+        android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Down"
+        android:layout_marginEnd="20dp"
+        android:onClick="moveDownClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vote_down" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

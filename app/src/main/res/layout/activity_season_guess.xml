@@ -8,7 +8,7 @@
     tools:context=".SeasonGuessActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/leagueLogoImageView"
         android:layout_width="254dp"
         android:layout_height="43dp"
         android:layout_marginTop="50dp"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/shl" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/teamrecyclerview"
+        android:id="@+id/teamRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,5 +34,5 @@
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/leagueLogoImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
