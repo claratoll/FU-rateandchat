@@ -4,55 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white_background"
     tools:context=".MyPageActivity">
 
     <TextView
         android:id="@+id/noNameTV"
-        android:layout_width="310dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="308dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:elegantTextHeight="true"
         android:text="Name"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noImageIV" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameTextView" />
 
     <Button
         android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="68dp"
+        android:layout_height="32dp"
+        android:background="@drawable/rectangle"
         android:onClick="editMyPageActivity"
         android:text="edit"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/noImageIV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.848"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noNameTV" />
+        app:layout_constraintTop_toTopOf="@+id/noImageIV"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/noImageIV"
-        android:layout_width="189dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="111dp"
+        android:layout_width="152dp"
+        android:layout_height="147dp"
         android:background="#918E8E"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
         app:srcCompat="@android:drawable/ic_menu_upload_you_tube" />
 
     <Button
         android:id="@+id/doneButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="164dp"
+        android:layout_width="68dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rectangle"
         android:onClick="doneButton"
         android:text="done"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="User name"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editButton" />
+        app:layout_constraintTop_toBottomOf="@+id/noImageIV" />
+
+    <TextView
+        android:id="@+id/HiScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="High score is: "
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noNameTV" />
+
+    <Button
+        android:id="@+id/ToChatbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
+
+    <Button
+        android:id="@+id/ToSeasonTipsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Season Tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ToChatbutton" />
+
+    <Button
+        android:id="@+id/ToWhatWasVotedForButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What was voted for"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ToSeasonTipsButton"
+        app:layout_constraintVertical_bias="0.174" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
