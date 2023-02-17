@@ -19,17 +19,17 @@ class TvProgramsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.tvProgramRV)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = TvProgramAdapter(this, TvProgramDataManager.tvPrograms)
+        recyclerView.adapter = ProgramAdapter(this, TvProgramDataManager.tvPrograms)
         db = Firebase.firestore
-        /*val docRef = db.collection("Tv programs")
+       /* val docRef = db.collection("Tv programs")
         docRef.get().addOnSuccessListener { documentSnapShot->
+            TvProgramDataManager.tvPrograms.clear()
             for (document in documentSnapShot.documents){
                 val tvProgram = document.toObject<TvProgram>()
                 if (tvProgram != null){
                     TvProgramDataManager.tvPrograms.add(tvProgram)
                 }
             }
-
         }*/
 
 
@@ -61,7 +61,7 @@ object TvProgramDataManager {
     init {
        tvPrograms.add(TvProgram("Idol", R.drawable.idol, idolDescription))
        tvPrograms.add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
-        //val db : FirebaseFirestore = Firebase.firestore
+       // val db : FirebaseFirestore = Firebase.firestore
         //db.collection("Tv programs").add(TvProgram("Idol", R.drawable.idol, idolDescription))
        // db.collection("Tv programs").add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
     }
