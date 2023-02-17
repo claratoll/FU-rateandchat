@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.Message
+import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +26,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messageList: ArrayList<Message>
     private lateinit var db : FirebaseFirestore
     private lateinit var messagesRef : CollectionReference
+    private lateinit var usersRef : CollectionReference
 
     var receiverRoom : String? = null
     var senderRoom : String? = null
@@ -42,6 +44,7 @@ class ChatActivity : AppCompatActivity() {
 
         db = Firebase.firestore
         messagesRef = db.collection("Chats")
+        usersRef = db.collection("Users")
 
         senderRoom = receiverUid + senderUid
         receiverRoom = senderUid + receiverUid
@@ -76,19 +79,31 @@ class ChatActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
 
             val message = messageBox.text.toString()
-            val messageObject = Message(message, senderUid)
+            usersRef.whereEqualTo("uid", senderUid)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d("nameQuery", "${document.id} => ${document.data}")
+                        val senderName = document.toObject<User>().name.toString()
+                        val messageObject = Message(message, senderUid, senderName)
 
-            messagesRef.document("$senderRoom").collection("Messages")
-                .add(messageObject)
-                .addOnSuccessListener { documentReference ->
-                    messagesRef.document("$receiverRoom").collection("Messages")
-                        .add(messageObject)
-                    Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
+                        messagesRef.document(senderRoom!!).collection("Messages")
+                            .add(messageObject)
+                            .addOnSuccessListener { documentReference ->
+                                messagesRef.document(receiverRoom!!).collection("Messages")
+                                    .add(messageObject)
+                                Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
+                                Log.d("msg", "Sender name is: $senderName")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.d("msg", "Error adding document", e)
+                            }
+                        messageBox.setText("")
+                    }
                 }
-                .addOnFailureListener { e ->
-                    Log.d("msg", "Error adding document", e)
+                .addOnFailureListener {exception ->
+                    Log.w("nameQuery", "Error getting documents: ", exception)
                 }
-            messageBox.setText("")
 
         }
     }

@@ -56,6 +56,7 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
             // do stuff for received view holder
             val viewHolder = holder as ReceivedViewHolder
             holder.receivedMessage.text = currentMessage.message
+            holder.senderName.text = currentMessage.senderName
         }
     }
 
@@ -67,6 +68,7 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
 
     inner class ReceivedViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val receivedMessage = itemView.findViewById<TextView>(R.id.txt_received_message)
+        val senderName = itemView.findViewById<TextView>(R.id.senderNameText)
     }
 
 }
