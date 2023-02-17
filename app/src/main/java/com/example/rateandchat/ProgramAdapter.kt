@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.TvProgram
 
-class TvProgramAdapter(val context : Context, val tvPrograms : List<TvProgram>)
-                       :RecyclerView.Adapter<TvProgramAdapter.ViewHolder>(){
+class ProgramAdapter(val context : Context, val tvPrograms : List<TvProgram>)
+                       :RecyclerView.Adapter<ProgramAdapter.ViewHolder>(){
 
     val layoutInflater = LayoutInflater.from(context)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
