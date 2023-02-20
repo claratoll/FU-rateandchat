@@ -6,14 +6,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.rateandchat.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class EditMyPageActivity : AppCompatActivity() {
     lateinit var userImage : ImageView
-    lateinit var userName : EditText
     private var imageUri : Uri? = null
+    lateinit var storageRef : StorageReference
+    lateinit var db : FirebaseFirestore
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,30 +35,47 @@ class EditMyPageActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         userImage = findViewById(R.id.pickImageIV)
-        userName = findViewById(R.id.userNameET)
+        val save = findViewById<Button>(R.id.saveButton)
+        save.setOnClickListener{
+            uploadImage()
+            finish()
+        }
 
+        storageRef = FirebaseStorage.getInstance().reference.child("Images")
+        db = FirebaseFirestore.getInstance()
 
+        userImage.setOnClickListener{
+            resultLauncher.launch("image/*")
+        }
+    }
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()){
+        imageUri = it
+        userImage.setImageURI(it)
     }
 
-    fun imagePicker (view: View){
-       val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(gallery, 100)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == 100){
-            imageUri = data?.data
-            userImage.setImageURI(imageUri)
+    private fun uploadImage(){
+        storageRef = storageRef.child(System.currentTimeMillis().toString())
+        imageUri?.let {
+            storageRef.putFile(it).addOnCompleteListener{ task ->
+                if (task.isSuccessful){
+                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+                        auth = Firebase.auth
+                        val currentUser = auth.currentUser
+                        val profilePicUri = ProfilePic(uri.toString())
+                        db.collection("profile Image").document(currentUser!!.uid).set(profilePicUri)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Upload successful!", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                }
+                else{
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
-    fun saveInfo (view: View){
-        val name = userName.text.toString()
-        val intent = Intent(this, MyPageActivity::class.java)
-        intent.putExtra("KEY", name)
-        startActivity(intent)
-        finish()
-    }
-
 }
+data class ProfilePic(val profileImage : String? = null)
