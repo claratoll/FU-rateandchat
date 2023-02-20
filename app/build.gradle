@@ -40,7 +40,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation platform('com.google.firebase:firebase-bom:31.2.1') //adding for notifications / messaging
+    implementation 'com.google.firebase:firebase-messaging' //adding for notifications / messaging
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.2'
+    implementation 'androidx.core:core-ktx:+'
     implementation 'androidx.core:core-ktx:+'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
