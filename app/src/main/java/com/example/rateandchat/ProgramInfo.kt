@@ -7,7 +7,7 @@ import android.widget.TextView
 
 const val POSITION_KEY = "position"
 const val POSITION_NOT_SET = -1
-class TvProgramInfo : AppCompatActivity() {
+class ProgramInfo : AppCompatActivity() {
     lateinit var heading : TextView
     lateinit var image : ImageView
     lateinit var description : TextView
@@ -22,9 +22,9 @@ class TvProgramInfo : AppCompatActivity() {
         image = findViewById(R.id.imageIV)
         description = findViewById(R.id.descriptionTV)
 
-        val tvProgram = TvProgramDataManager.tvPrograms[position]
-        heading.text = tvProgram.heading
-        image.setImageResource(tvProgram.image!!)
-        description.text = tvProgram.description
+        val program = ProgramDataManager.programs[position]
+        heading.text = program.name
+        image.setImageResource(program.image!!)
+        description.text = program.description
     }
 }
