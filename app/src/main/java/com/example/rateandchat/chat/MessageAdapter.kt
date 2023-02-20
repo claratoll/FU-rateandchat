@@ -1,4 +1,4 @@
-package com.example.rateandchat
+package com.example.rateandchat.chat
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Message
 import com.google.firebase.auth.FirebaseAuth
 

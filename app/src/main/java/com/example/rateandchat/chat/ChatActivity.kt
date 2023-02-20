@@ -1,4 +1,4 @@
-package com.example.rateandchat
+package com.example.rateandchat.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Message
 import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
@@ -16,30 +17,38 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class GeneralChatActivity : AppCompatActivity() {
+// 1 on 1 chatroom
+class ChatActivity : AppCompatActivity() {
 
     private lateinit var chatRecyclerView: RecyclerView
     private lateinit var messageBox : EditText
     private lateinit var sendButton : ImageView
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
-    private lateinit var uidRef : CollectionReference
     private lateinit var db : FirebaseFirestore
     private lateinit var messagesRef : CollectionReference
+    private lateinit var usersRef : CollectionReference
 
     var receiverRoom : String? = null
-    var generalRoom : String = "dummychat"
+    var senderRoom : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+
+
         val name = intent.getStringExtra("name")
+        val receiverUid = intent.getStringExtra("uid")
+
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
 
         db = Firebase.firestore
         messagesRef = db.collection("Chats")
-        uidRef = db.collection("Users")
+        usersRef = db.collection("Users")
+
+        senderRoom = receiverUid + senderUid
+        receiverRoom = senderUid + receiverUid
 
         supportActionBar?.title = name
 
@@ -51,9 +60,11 @@ class GeneralChatActivity : AppCompatActivity() {
         chatRecyclerView.layoutManager = LinearLayoutManager(this)
         chatRecyclerView.adapter = messageAdapter
 
-        messagesRef.document(generalRoom).collection("Messages")
+        // adding data to recycler view
+
+        messagesRef.document(senderRoom!!).collection("Messages")
             .orderBy("timestamp")
-            .addSnapshotListener { snapshot, e ->
+            .addSnapshotListener() { snapshot, e ->
                 messageList.clear()
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -64,38 +75,36 @@ class GeneralChatActivity : AppCompatActivity() {
                 }
             }
 
+
         // adding the message to database
         sendButton.setOnClickListener {
 
             val message = messageBox.text.toString()
-
-            uidRef.whereEqualTo("uid", senderUid)
+            usersRef.whereEqualTo("uid", senderUid)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         Log.d("nameQuery", "${document.id} => ${document.data}")
-                        //val senderUid = FirebaseAuth.getInstance().currentUser?.uid
                         val senderName = document.toObject<User>().name.toString()
                         val messageObject = Message(message, senderUid, senderName)
 
-                        messagesRef.document(generalRoom).collection("Messages")
+                        messagesRef.document(senderRoom!!).collection("Messages")
                             .add(messageObject)
                             .addOnSuccessListener { documentReference ->
-                                messagesRef.document("$receiverRoom").collection("Messages")
+                                messagesRef.document(receiverRoom!!).collection("Messages")
                                     .add(messageObject)
                                 Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
+                                Log.d("msg", "Sender name is: $senderName")
                             }
                             .addOnFailureListener { e ->
                                 Log.d("msg", "Error adding document", e)
                             }
-
                         messageBox.setText("")
                     }
                 }
                 .addOnFailureListener {exception ->
                     Log.w("nameQuery", "Error getting documents: ", exception)
                 }
-
 
         }
     }

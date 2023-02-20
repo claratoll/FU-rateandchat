@@ -1,13 +1,13 @@
-package com.example.rateandchat
+package com.example.rateandchat.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

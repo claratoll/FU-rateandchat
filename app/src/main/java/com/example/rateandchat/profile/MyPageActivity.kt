@@ -1,14 +1,12 @@
-package com.example.rateandchat
+package com.example.rateandchat.profile
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.rateandchat.main.DashBoardActivity
+import com.example.rateandchat.R
 
 class MyPageActivity : AppCompatActivity() {
     lateinit var personName : TextView
@@ -33,7 +31,7 @@ class MyPageActivity : AppCompatActivity() {
     }
 
     fun editMyPageActivity(view: View){
-        val intent = Intent(this,EditMyPageActivity::class.java)
+        val intent = Intent(this, EditMyPageActivity::class.java)
         startActivity(intent)
         finish()
     }

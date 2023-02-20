@@ -1,12 +1,13 @@
-package com.example.rateandchat
+package com.example.rateandchat.chat
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
+import com.example.rateandchat.profile.UserAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore

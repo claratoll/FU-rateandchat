@@ -1,9 +1,13 @@
-package com.example.rateandchat
+package com.example.rateandchat.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.rateandchat.*
+import com.example.rateandchat.profile.MyPageActivity
+import com.example.rateandchat.profile.UserListActivity
+import com.example.rateandchat.sports.SportsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
