@@ -1,4 +1,4 @@
-package com.example.rateandchat
+package com.example.rateandchat.profile
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.chat.GeneralChatActivity
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth

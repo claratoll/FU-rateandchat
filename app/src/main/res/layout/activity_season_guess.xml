@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/background"
     android:layout_height="match_parent"
-    tools:context=".SeasonGuessActivity">
+    tools:context=".sports.SeasonGuessActivity">
 
     <ImageView
         android:id="@+id/leagueLogoImageView"

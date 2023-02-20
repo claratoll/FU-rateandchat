@@ -13,7 +13,7 @@
         android:theme="@style/Theme.RateAndChat"
         tools:targetApi="31">
         <activity
-            android:name=".GeneralChatActivity"
+            android:name=".chat.GeneralChatActivity"
             android:exported="false" />
         <activity
             android:name=".TvProgramInfo"
@@ -30,33 +30,33 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SeasonGuessActivity"
+            android:name=".sports.SeasonGuessActivity"
             android:exported="false" />
         <activity
-            android:name=".UserListActivity"
+            android:name=".profile.UserListActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".chat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatAppActivity"
+            android:name=".chat.ChatAppActivity"
             android:exported="false" />
         <activity
-            android:name=".EditMyPageActivity"
+            android:name=".profile.EditMyPageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MyPageActivity"
+            android:name=".profile.MyPageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SportsActivity"
+            android:name=".sports.SportsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -91,20 +91,20 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DashBoardActivity"
+            android:name=".main.DashBoardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateUserActivity"
+            android:name=".main.CreateUserActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".main.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
