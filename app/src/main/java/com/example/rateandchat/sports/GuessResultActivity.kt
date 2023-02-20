@@ -1,7 +1,8 @@
-package com.example.rateandchat
+package com.example.rateandchat.sports
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rateandchat.R
 
 class GuessResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
