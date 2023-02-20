@@ -6,8 +6,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.dataclass.Program
-import com.example.rateandchat.dataclass.Team
-import com.example.rateandchat.sports.TeamRecyclerAdapter
+import com.example.rateandchat.programs.ProgramAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject

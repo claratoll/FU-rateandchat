@@ -1,4 +1,4 @@
-package com.example.rateandchat
+package com.example.rateandchat.programs
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.programs.POSITION_KEY
+import com.example.rateandchat.programs.ProgramInfo
+import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Program
 
 class ProgramAdapter(val context : Context, val programs : List<Program>)
