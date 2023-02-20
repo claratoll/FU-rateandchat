@@ -43,7 +43,7 @@ class DashBoardActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun openTvProgramsActivity (view : View){
-        val intent = Intent(this, TvProgramsActivity::class.java)
+        val intent = Intent(this, ProgramsActivity::class.java)
         startActivity(intent)
     }
     fun openVideoGamesActivity (view: View){

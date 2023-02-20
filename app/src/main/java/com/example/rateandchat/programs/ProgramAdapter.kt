@@ -8,36 +8,37 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rateandchat.dataclass.TvProgram
+import com.example.rateandchat.dataclass.Program
 
-class ProgramAdapter(val context : Context, val tvPrograms : List<TvProgram>)
+class ProgramAdapter(val context : Context, val programs : List<Program>)
                        :RecyclerView.Adapter<ProgramAdapter.ViewHolder>(){
 
     val layoutInflater = LayoutInflater.from(context)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView= layoutInflater.inflate(R.layout.list_item, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tvProgram = tvPrograms[position]
-        holder.heading.text = tvProgram.heading
-        holder.image.setImageResource(tvProgram.image!!)
+        val thisProgram = programs[position]
+        holder.name.text = thisProgram.name.toString()
+        holder.image.setImageResource(thisProgram.image!!)
         holder.listItemPosition = position
     }
 
     override fun getItemCount(): Int {
-        return tvPrograms.size
+        return programs.size
     }
 
     inner class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
-        val heading = itemView.findViewById<TextView>(R.id.nameItemTextView)
+        val name = itemView.findViewById<TextView>(R.id.nameItemTextView)
         val image = itemView.findViewById<ImageView>(R.id.ItemImageView)
         var listItemPosition = 0
 
         init {
             itemView.setOnClickListener{
-                val intent = Intent(context , TvProgramInfo::class.java)
+                val intent = Intent(context , ProgramInfo::class.java)
                 intent.putExtra(POSITION_KEY, listItemPosition)
                 context.startActivity(intent)
             }

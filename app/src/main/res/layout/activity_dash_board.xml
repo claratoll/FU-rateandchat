@@ -49,7 +49,7 @@
         android:layout_marginTop="25dp"
         android:backgroundTint="#FFB703"
         android:onClick="openTvProgramsActivity"
-        android:text="Tv programs"
+        android:text="Live programs"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,6 @@
         app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
 
     <Button
-
         android:id="@+id/ChatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
