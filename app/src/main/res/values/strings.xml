@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RateAndChat</string>
-    <string name="this_is_a_sent_message" />
-    <string name="this_is_a_received_message" />
+    <string name="this_is_a_sent_message">This is a sent message</string>
+    <string name="this_is_a_received_message">This is a received message</string>
     <string name="type_a_message">Type a message</string>
+    <string name="sender_name">SenderName</string>
 </resources>

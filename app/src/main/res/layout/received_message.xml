@@ -21,8 +21,11 @@
 
         <TextView
             android:id="@+id/txt_received_message"
-            android:layout_width="48dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:padding="10dp"
             android:text="@string/this_is_a_received_message"
             android:textAlignment="textStart"
@@ -38,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="TextView"
+        android:text="@string/sender_name"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
