@@ -35,6 +35,7 @@
         android:layout_height="41dp"
         android:background="@drawable/rectangle"
         android:elegantTextHeight="true"
+        android:onClick="signInGoogle"
         android:text="Sing in with Google"
         android:textAlignment="center"
         android:textColor="@color/black"
