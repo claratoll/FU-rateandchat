@@ -34,22 +34,13 @@ class DashBoardActivity : AppCompatActivity() {
         val intent = Intent(this, MyPageActivity::class.java)
         startActivity(intent)
     }
-    fun openMoviesActivity (view : View){
-        val intent = Intent(this, MoviesActivity::class.java)
-        startActivity(intent)
-    }
-    fun openTvSeriesActivity (view : View){
-        val intent = Intent(this, TvSeriesActivity::class.java)
-        startActivity(intent)
-    }
+
+
     fun openTvProgramsActivity (view : View){
         val intent = Intent(this, ProgramsActivity::class.java)
         startActivity(intent)
     }
-    fun openVideoGamesActivity (view: View){
-        val intent = Intent(this, VideoGamesActivity::class.java)
-        startActivity(intent)
-    }
+
     fun openSportsActivity (view: View){
         val intent = Intent(this, SportsActivity::class.java)
         startActivity(intent)

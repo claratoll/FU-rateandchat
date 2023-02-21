@@ -15,7 +15,7 @@ class ProgramInfo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tv_program_info)
+        setContentView(R.layout.activity_program_info)
 
         val position = intent.getIntExtra(POSITION_KEY, POSITION_NOT_SET)
 

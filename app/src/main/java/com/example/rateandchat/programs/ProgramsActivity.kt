@@ -25,7 +25,7 @@ class ProgramsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tv_programs)
+        setContentView(R.layout.activity_programs)
 
         db = Firebase.firestore
 
@@ -66,34 +66,4 @@ class ProgramsActivity : AppCompatActivity() {
     }
 
 
-  /*  override fun onResume() {
-        super.onResume()
-
-        recyclerView.adapter?.notifyDataSetChanged()
-    }
-*/
-}
-
-
-object ProgramDataManager {
-    val programs = mutableListOf<Program>()
-    val idolDescription = "Swedish version of Idols, a talent \n" +
-            "show in which\n" +
-            " amateur singers compete to\n" +
-            " determine who is the best."
-
-    val talangDescription = "Talang, formerly named Talang Sverige in\n" +
-            "" +
-            " 2014, is the Swedish version of the Got Talent series show\n" +
-            " where singers, dancers, comedians, variety acts and other\n" +
-            " performers compete against each other for audience support\n" +
-            " and the prize money"
-
-    init {
-        // tvPrograms.add(Program("Idol", R.drawable.idol, idolDescription))
-        // tvPrograms.add(Program("Talang Svergie", R.drawable.talang, talangDescription))
-        // val db : FirebaseFirestore = Firebase.firestore
-        //db.collection("Tv programs").add(TvProgram("Idol", R.drawable.idol, idolDescription))
-        // db.collection("Tv programs").add(TvProgram("Talang Svergie", R.drawable.talang, talangDescription))
-    }
 }

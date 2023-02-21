@@ -19,78 +19,41 @@
         app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/MoviesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#219EBC"
-        android:onClick="openMoviesActivity"
-        android:text="Movies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/TvSeriesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="#023047"
-        android:onClick="openTvSeriesActivity"
-        android:text="Tv series"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MoviesButton" />
-
-    <Button
         android:id="@+id/TvProgramsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="#FFB703"
         android:onClick="openTvProgramsActivity"
         android:text="Live programs"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TvSeriesButton" />
-
-    <Button
-        android:id="@+id/VideoGamesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="#FB8500"
-        android:onClick="openVideoGamesActivity"
-        android:text="Video games"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TvProgramsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/SportsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="#F1EEEE"
         android:onClick="openSportsActivity"
         android:text="Sports"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/TvProgramsButton" />
 
     <Button
         android:id="@+id/ChatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:onClick="openChatActivity"
         android:text="Chat"
         app:layout_constraintEnd_toStartOf="@+id/SportsButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VideoGamesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/TvProgramsButton" />
 
     <Button
         android:id="@+id/myPageButton"
