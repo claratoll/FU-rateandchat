@@ -31,15 +31,15 @@
         android:text="edit"
         android:textColor="@color/black"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/noImageIV"
+        app:layout_constraintBottom_toBottomOf="@+id/profileIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.848"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/noImageIV"
+        app:layout_constraintTop_toTopOf="@+id/profileIV"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/noImageIV"
+        android:id="@+id/profileIV"
         android:layout_width="152dp"
         android:layout_height="147dp"
         android:background="#918E8E"
@@ -72,7 +72,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noImageIV" />
+        app:layout_constraintTop_toBottomOf="@+id/profileIV" />
 
     <TextView
         android:id="@+id/HiScoreTextView"
