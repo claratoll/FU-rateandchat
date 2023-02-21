@@ -25,15 +25,7 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         val team = teams[position]
         holder.teamNameView.text = team.teamName.toString()
         holder.teamNumberView.text = team.teamNumber.toString()
-
-
-     /*   val imageRef = Firebase.storage.reference.child(meal.glideImageUrl)
-        imageRef.downloadUrl.addOnSuccessListener { Uri -> val imageUrl = Uri.toString()
-            Glide.with(context)
-                .load(imageUrl)
-                .into(holder.imageMealView)
-        }*/
-
+        //holder.imageLogoView.setImageResource(team.logoImage!!)
         holder.teamPosition = position
     }
 
