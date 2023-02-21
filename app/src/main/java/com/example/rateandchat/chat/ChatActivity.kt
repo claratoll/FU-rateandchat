@@ -76,7 +76,7 @@ class ChatActivity : AppCompatActivity() {
             }
 
 
-        // adding the message to database
+        // Query db for sender's name
         sendButton.setOnClickListener {
 
             val message = messageBox.text.toString()
@@ -88,18 +88,8 @@ class ChatActivity : AppCompatActivity() {
                         val senderName = document.toObject<User>().name.toString()
                         val messageObject = Message(message, senderUid, senderName)
 
-                        messagesRef.document(senderRoom!!).collection("Messages")
-                            .add(messageObject)
-                            .addOnSuccessListener { documentReference ->
-                                messagesRef.document(receiverRoom!!).collection("Messages")
-                                    .add(messageObject)
-                                Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
-                                Log.d("msg", "Sender name is: $senderName")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.d("msg", "Error adding document", e)
-                            }
-                        messageBox.setText("")
+                        addMsgToDatabase(messageObject, senderName)
+
                     }
                 }
                 .addOnFailureListener {exception ->
@@ -107,5 +97,21 @@ class ChatActivity : AppCompatActivity() {
                 }
 
         }
+    }
+
+    // Add message to database
+    private fun addMsgToDatabase(messageObject : Message, senderName : String) {
+        messagesRef.document(senderRoom!!).collection("Messages")
+            .add(messageObject)
+            .addOnSuccessListener { documentReference ->
+                messagesRef.document(receiverRoom!!).collection("Messages")
+                    .add(messageObject)
+                Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
+                Log.d("msg", "Sender name is: $senderName")
+            }
+            .addOnFailureListener { e ->
+                Log.d("msg", "Error adding document", e)
+            }
+        messageBox.setText("")
     }
 }
