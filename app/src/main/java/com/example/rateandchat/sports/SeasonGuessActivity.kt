@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
+import com.example.rateandchat.profile.ProfilePic
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 class SeasonGuessActivity : AppCompatActivity() {
 
@@ -23,6 +27,7 @@ class SeasonGuessActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : TeamRecyclerAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +73,7 @@ class SeasonGuessActivity : AppCompatActivity() {
     fun moveDownClick(view: View){
         Log.v("!!!", "move down")
     }
+
 
     private fun getTeamData(){
         db.collection("Team")
