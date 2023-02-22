@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:text="x"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choiceCheckBox1" />
 
@@ -23,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:text="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choiceCheckBox2" />
 
@@ -33,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
-        android:text="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
@@ -78,4 +75,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/teamATextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Team A"
+        app:layout_constraintBottom_toBottomOf="@+id/choiceCheckBox1"
+        app:layout_constraintStart_toEndOf="@+id/choiceCheckBox1"
+        app:layout_constraintTop_toTopOf="@+id/choiceCheckBox1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/choiceCheckBox2"
+        app:layout_constraintStart_toEndOf="@+id/choiceCheckBox2"
+        app:layout_constraintTop_toTopOf="@+id/choiceCheckBox2" />
+
+    <TextView
+        android:id="@+id/teamBTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Team B"
+        app:layout_constraintBottom_toBottomOf="@+id/choiceCheckBox3"
+        app:layout_constraintStart_toEndOf="@+id/choiceCheckBox3"
+        app:layout_constraintTop_toTopOf="@+id/choiceCheckBox3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

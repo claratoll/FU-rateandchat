@@ -28,7 +28,6 @@ class SeasonGuessActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : TeamRecyclerAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_guess)
@@ -46,15 +45,10 @@ class SeasonGuessActivity : AppCompatActivity() {
 
         getTeamData()
 
-        //tillfälligt
-        leagueID = "SDHL"
-
-       // leagueID = intent.getStringExtra("documentID")!!
+        leagueID = intent.getStringExtra("league name")!!
     }
 
-
     fun teamLists(){
-
         //idk here we could have arrays of the teams that are standard?
     }
 
@@ -83,19 +77,16 @@ class SeasonGuessActivity : AppCompatActivity() {
                         val teamArray = mutableListOf<Team>()
                         for (document in snapshot.documents) {
                             val teamDoc = document.toObject<Team>()
+                            Log.v("!!!", teamDoc?.teamName.toString())
                             if (teamDoc != null) {
-                                Log.v("!!!", "team: ${teamDoc.league}")
                                 if (teamDoc.league.equals(leagueID)){
-                                teamArray.add(teamDoc)
+                                    teamArray.add(teamDoc)
                                 }
                             } else {
-
-                                Log.v("!!!", "no images")
+                                Log.v("!!!", "no info")
                             }
                         }
-
                         teamArray.sortBy { it.teamNumber }
-
 
                         listOfTeams.addAll(teamArray)
                         adapter.notifyDataSetChanged()
