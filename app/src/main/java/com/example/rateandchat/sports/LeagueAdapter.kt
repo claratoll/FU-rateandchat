@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.League
-import com.example.rateandchat.programs.POSITION_KEY
 import com.example.rateandchat.programs.ProgramInfo
 
 class LeagueAdapter(val context : Context, val leagues : List<League>)
