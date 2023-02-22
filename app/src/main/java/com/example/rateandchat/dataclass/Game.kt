@@ -8,6 +8,7 @@ data class Game (
     var teamAPlaying : String? = null,
     var teamBPlaying : String? = null,
     var score : String? = null,
+    var image : String? = null,
     var tag : String? = null,
     var Date : Date? = null
         )

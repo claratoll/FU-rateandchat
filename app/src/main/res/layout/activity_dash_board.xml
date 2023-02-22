@@ -20,22 +20,23 @@
 
     <Button
         android:id="@+id/TvProgramsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="185dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="#FFB703"
         android:onClick="openTvProgramsActivity"
         android:text="Live programs"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/SportsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="183dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#F1EEEE"
         android:onClick="openSportsActivity"
         android:text="Sports"
@@ -46,14 +47,15 @@
 
     <Button
         android:id="@+id/ChatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="181dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="50dp"
         android:onClick="openChatActivity"
         android:text="Chat"
-        app:layout_constraintEnd_toStartOf="@+id/SportsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TvProgramsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/allProgramsButton" />
 
     <Button
         android:id="@+id/myPageButton"
@@ -76,5 +78,17 @@
         android:text="log out"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/allProgramsButton"
+        android:layout_width="181dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="50dp"
+        android:onClick="openAllProgramsActivity"
+        android:text="All programs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SportsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

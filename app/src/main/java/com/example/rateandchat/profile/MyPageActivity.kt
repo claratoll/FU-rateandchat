@@ -35,7 +35,7 @@ class MyPageActivity : AppCompatActivity() {
         profilePic = findViewById(R.id.profileIV)
         downloadImage()
         usersRef = db.collection("Users")
-
+// to get the user name into my page activity.
         usersRef.whereEqualTo("uid", currentUser)
             .get()
             .addOnSuccessListener { documents ->
@@ -57,7 +57,7 @@ class MyPageActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
+// to get the image from dataBase while using the current user.
     fun downloadImage(){
         val currentUser = FirebaseAuth.getInstance().currentUser?.uid
         db.collection("profile Image").document(currentUser!!).get().addOnSuccessListener {it ->

@@ -1,5 +1,6 @@
 package com.example.rateandchat.profile
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -33,7 +34,8 @@ class EditMyPageActivity : AppCompatActivity() {
         val save = findViewById<Button>(R.id.saveButton)
         save.setOnClickListener{
             uploadImage()
-            finish()
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
         }
 
         storageRef = FirebaseStorage.getInstance().reference.child("Images")
@@ -43,13 +45,14 @@ class EditMyPageActivity : AppCompatActivity() {
             resultLauncher.launch("image/*")
         }
     }
+    // to let the user chose an image from mobiles internal storage
     private val resultLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()){
         imageUri = it
         userImage.setImageURI(it)
     }
 
-
+// to upload the image to dataBase.
     private fun uploadImage(){
         storageRef = storageRef.child(System.currentTimeMillis().toString())
         imageUri?.let {
