@@ -39,6 +39,9 @@ class LeagueActivity : AppCompatActivity() {
 
 
     private fun getLeagueData() {
+
+        //get all leagues from firebase and save it in an array which is shown in the recyclerview
+
         db.collection("Leagues")
             .addSnapshotListener { snapshot, e ->
                 listOfLeagues.clear()

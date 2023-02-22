@@ -14,12 +14,12 @@ import com.google.firebase.ktx.Firebase
 
 class ProgramsActivity : AppCompatActivity() {
 
-    val listOfPrograms = mutableListOf<Program>()
+    private val listOfPrograms = mutableListOf<Program>()
 
 
     private lateinit var db: FirebaseFirestore
 
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProgramAdapter
 
 
@@ -39,11 +39,13 @@ class ProgramsActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         getProgramData()
-
     }
 
 
     private fun getProgramData() {
+
+        //get programs from firebase and save it in an array which is shown in the recyclerview
+
         db.collection("Tv programs")
             .addSnapshotListener { snapshot, e ->
                 listOfPrograms.clear()
@@ -58,6 +60,8 @@ class ProgramsActivity : AppCompatActivity() {
                             Log.v("!!!", "no programs")
                         }
                     }
+                    //programs sorted by date
+                    programArray.sortBy { it.Date }
 
                     listOfPrograms.addAll(programArray)
                     recyclerView.adapter?.notifyDataSetChanged()

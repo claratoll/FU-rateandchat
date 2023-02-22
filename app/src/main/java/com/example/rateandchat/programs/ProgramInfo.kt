@@ -15,6 +15,8 @@ class ProgramInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program_info)
 
+
+        //show information about the program
         val name = intent.getStringExtra("program")
         val info = intent.getStringExtra("info")
         //val getImage = intent.getExtra("image")

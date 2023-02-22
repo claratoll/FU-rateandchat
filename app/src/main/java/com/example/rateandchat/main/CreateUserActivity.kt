@@ -42,7 +42,6 @@ class CreateUserActivity : AppCompatActivity() {
         nameView = findViewById(R.id.createNameEditView)
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
-        //nameView = findViewById(R.id.createEditName)
 
     }
 
@@ -51,6 +50,7 @@ class CreateUserActivity : AppCompatActivity() {
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
 
+        //if user missed to provide any information they cannot create an account
         if (email.isEmpty() || password.isEmpty() || name.isEmpty()) {
             return
         }

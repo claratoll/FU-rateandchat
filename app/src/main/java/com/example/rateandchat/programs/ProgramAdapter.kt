@@ -23,6 +23,7 @@ class ProgramAdapter(val context : Context, val programs : List<Program>)
         return ViewHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val thisProgram = programs[position]
         holder.name.text = thisProgram.name.toString()

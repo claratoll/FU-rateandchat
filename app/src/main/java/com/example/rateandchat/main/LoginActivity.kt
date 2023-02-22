@@ -31,14 +31,13 @@ class LoginActivity : AppCompatActivity() {
 
         emailView = findViewById(R.id.loginEditEmailText)
         passwordView = findViewById(R.id.loginEditPasswordText)
-
-
     }
 
     fun logIn (view: View) {
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
 
+        //if email or password is empty the user cannot login
         if (email.isEmpty() || password.isEmpty()) {
             return
         }
