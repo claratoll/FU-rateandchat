@@ -11,24 +11,18 @@ class GuessResultActivity : AppCompatActivity() {
     lateinit var teamATextView : TextView
     lateinit var teamBTextView : TextView
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guess_result)
 
+        val teamA = intent.getStringExtra("teamAPlaying")!!
+        val teamB = intent.getStringExtra("teamBPlaying")!!
 
-        var teamA = intent.getStringExtra("teamAPlaying")!!
-        var teamB = intent.getStringExtra("teamBPlaying")!!
-
-
-        Log.v("!!!", teamA.toString())
+        //displays which teams user can vote on
 
         teamATextView = findViewById(R.id.teamATextView)
         teamBTextView = findViewById(R.id.teamBTextView)
         teamATextView.text = teamA
         teamBTextView.text = teamB
-
-
     }
 }

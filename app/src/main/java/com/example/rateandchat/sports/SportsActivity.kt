@@ -44,6 +44,9 @@ class SportsActivity : AppCompatActivity() {
     }
 
     private fun getGameData() {
+
+        //get games from firebase and save it in an array which is shown in the recyclerview
+
         db.collection("Game")
             .addSnapshotListener { snapshot, e ->
                 listOfGames.clear()
@@ -58,7 +61,8 @@ class SportsActivity : AppCompatActivity() {
                             Log.v("!!!", "no info")
                         }
                     }
-                    gameArray.sortBy { it.teamAPlaying }
+                    //games sorted by date
+                    gameArray.sortBy { it.Date }
 
                     listOfGames.addAll(gameArray)
                     adapter.notifyDataSetChanged()

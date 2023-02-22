@@ -45,6 +45,7 @@ class SeasonGuessActivity : AppCompatActivity() {
 
         getTeamData()
 
+        //leagueID is stored in a variable which will be used to sort the teams correctly
         leagueID = intent.getStringExtra("league name")!!
     }
 
@@ -70,6 +71,9 @@ class SeasonGuessActivity : AppCompatActivity() {
 
 
     private fun getTeamData(){
+
+        //get teams from firebase and save it in an array which is shown in the recyclerview
+
         db.collection("Team")
                 .addSnapshotListener { snapshot, e ->
                     listOfTeams.clear()
@@ -79,6 +83,8 @@ class SeasonGuessActivity : AppCompatActivity() {
                             val teamDoc = document.toObject<Team>()
                             Log.v("!!!", teamDoc?.teamName.toString())
                             if (teamDoc != null) {
+
+                                //if the team has the same leagueID as stored above it is saved in the array
                                 if (teamDoc.league.equals(leagueID)){
                                     teamArray.add(teamDoc)
                                 }
