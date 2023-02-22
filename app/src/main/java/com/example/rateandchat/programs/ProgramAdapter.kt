@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rateandchat.programs.POSITION_KEY
 import com.example.rateandchat.programs.ProgramInfo
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Program
+import com.example.rateandchat.sports.GuessResultActivity
 
 class ProgramAdapter(val context : Context, val programs : List<Program>)
                        :RecyclerView.Adapter<ProgramAdapter.ViewHolder>(){
@@ -28,6 +28,15 @@ class ProgramAdapter(val context : Context, val programs : List<Program>)
         holder.name.text = thisProgram.name.toString()
      //   holder.image.setImageResource(thisProgram.image!!)
         holder.listItemPosition = position
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context , ProgramInfo::class.java)
+            intent.putExtra("program", thisProgram.name.toString())
+            intent.putExtra("info", thisProgram.description.toString())
+            //intent.putExtra("image", thisProgram.image)
+            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -38,14 +47,6 @@ class ProgramAdapter(val context : Context, val programs : List<Program>)
         val name = itemView.findViewById<TextView>(R.id.nameItemTextView)
         val image = itemView.findViewById<ImageView>(R.id.ItemImageView)
         var listItemPosition = 0
-
-        init {
-            itemView.setOnClickListener{
-                val intent = Intent(context , ProgramInfo::class.java)
-                intent.putExtra(POSITION_KEY, listItemPosition)
-                context.startActivity(intent)
-            }
-        }
     }
 
 }
