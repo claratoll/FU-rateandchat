@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -77,8 +78,10 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener{
             if (it.isSuccessful){
                 val intent : Intent = Intent(this, DashBoardActivity::class.java)
+                Log.v("!!!", "login success")
                 startActivity(intent)
             }else{
+                Log.v("!!!", "could not log in")
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
             } }
     }

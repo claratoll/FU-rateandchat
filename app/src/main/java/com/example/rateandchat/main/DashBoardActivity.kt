@@ -7,6 +7,7 @@ import android.view.View
 import com.example.rateandchat.*
 import com.example.rateandchat.profile.MyPageActivity
 import com.example.rateandchat.profile.UserListActivity
+import com.example.rateandchat.programs.ProgramsActivity
 import com.example.rateandchat.sports.SportsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

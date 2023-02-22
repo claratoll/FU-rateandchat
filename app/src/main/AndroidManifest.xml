@@ -13,10 +13,13 @@
         android:theme="@style/Theme.RateAndChat"
         tools:targetApi="31">
         <activity
+            android:name=".sports.LeagueActivity"
+            android:exported="false" />
+        <activity
             android:name=".chat.GeneralChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ProgramInfo"
+            android:name=".programs.ProgramInfo"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -62,16 +65,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:name=".ProgramsActivity"
+            android:name=".programs.ProgramsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".main.DashBoardActivity"
             android:exported="false">

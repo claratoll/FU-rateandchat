@@ -1,4 +1,4 @@
-package com.example.rateandchat.programs
+package com.example.rateandchat.sports
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,64 +6,56 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
-import com.example.rateandchat.dataclass.Program
+import com.example.rateandchat.dataclass.League
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class ProgramsActivity : AppCompatActivity() {
+class LeagueActivity : AppCompatActivity() {
 
-    val listOfPrograms = mutableListOf<Program>()
-
-
+    val listOfLeagues = mutableListOf<League>()
     private lateinit var db: FirebaseFirestore
-
     lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ProgramAdapter
-
+    private lateinit var adapter: LeagueAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programs)
+        setContentView(R.layout.activity_league)
 
         db = Firebase.firestore
 
         //gömmer Action Bar längst upp
         supportActionBar?.hide()
+        recyclerView = findViewById(R.id.leagueRecyclerView)
 
-        recyclerView = findViewById(R.id.tvProgramRV)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = ProgramAdapter(this, listOfPrograms)
+        adapter = LeagueAdapter(this, listOfLeagues)
         recyclerView.adapter = adapter
 
-        getProgramData()
-
+        getLeagueData()
     }
 
 
-    private fun getProgramData() {
-        db.collection("Tv programs")
+    private fun getLeagueData() {
+        db.collection("Leagues")
             .addSnapshotListener { snapshot, e ->
-                listOfPrograms.clear()
+                listOfLeagues.clear()
                 if (snapshot != null) {
-                    val programArray = mutableListOf<Program>()
+                    val leagueArray = mutableListOf<League>()
                     for (document in snapshot.documents) {
-                        val progDoc = document.toObject<Program>()
-                        if (progDoc != null) {
-                            Log.v("!!!", "program: ${progDoc.name}")
-                            programArray.add(progDoc)
+                        val leagueDoc = document.toObject<League>()
+                        if (leagueDoc != null) {
+                            leagueArray.add(leagueDoc)
                         } else {
-                            Log.v("!!!", "no programs")
+                            Log.v("!!!", "no league")
                         }
                     }
 
-                    listOfPrograms.addAll(programArray)
+                    listOfLeagues.addAll(leagueArray)
                     recyclerView.adapter?.notifyDataSetChanged()
                 }
             }
     }
-
-
 }
