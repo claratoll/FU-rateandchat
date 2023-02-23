@@ -40,12 +40,14 @@ class ChatActivity : AppCompatActivity() {
 
         val name = intent.getStringExtra("name")
         val receiverUid = intent.getStringExtra("uid")
-
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
 
         db = Firebase.firestore
         messagesRef = db.collection("Chats")
         usersRef = db.collection("Users")
+
+        /* Creates different rooms, depending on who
+        * receives and who sends the message */
 
         senderRoom = receiverUid + senderUid
         receiverRoom = senderUid + receiverUid
@@ -55,12 +57,17 @@ class ChatActivity : AppCompatActivity() {
         chatRecyclerView = findViewById(R.id.chatRecycleView)
         messageBox = findViewById(R.id.messageBox)
         sendButton = findViewById(R.id.sendButton)
+
+        /* Initialization of message list, message adapter,
+        * inflates the layout */
+
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
         chatRecyclerView.layoutManager = LinearLayoutManager(this)
         chatRecyclerView.adapter = messageAdapter
 
-        // adding data to recycler view
+        /* Reads data from Firebase, orders it by time,
+        converts it to Message object and adds it to the RecyclerView */
 
         messagesRef.document(senderRoom!!).collection("Messages")
             .orderBy("timestamp")
@@ -76,7 +83,7 @@ class ChatActivity : AppCompatActivity() {
             }
 
 
-        // Query db for sender's name
+        /* Firebase query for sender's name */
         sendButton.setOnClickListener {
 
             val message = messageBox.text.toString()
@@ -99,7 +106,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-    // Add message to database
+    /* Adds messge to Firebase */
     private fun addMsgToDatabase(messageObject : Message, senderName : String) {
         messagesRef.document(senderRoom!!).collection("Messages")
             .add(messageObject)
