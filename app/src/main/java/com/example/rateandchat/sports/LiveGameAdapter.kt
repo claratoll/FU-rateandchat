@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Game
+import com.squareup.picasso.Picasso
 
 class LiveGameAdapter (val context: Context, val games : List <Game>): RecyclerView.Adapter<LiveGameAdapter.ViewHolder>() {
 
@@ -24,8 +25,11 @@ class LiveGameAdapter (val context: Context, val games : List <Game>): RecyclerV
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val game = games[position]
         holder.teamNameView.text = "${game.teamAPlaying} vs ${game.teamBPlaying}: ${game.Date}"
-        //holder.imageLogoView.setImageResource(team.logoImage!!)
+
+        //to get the image from database and hold it using Picasso
+        Picasso.get().load(game.image).into(holder.imageLogoView)
         holder.teamPosition = position
+
 
         holder.itemView.setOnClickListener{
             val intent = Intent(context , GuessResultActivity::class.java)

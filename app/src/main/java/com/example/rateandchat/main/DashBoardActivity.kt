@@ -51,4 +51,9 @@ class DashBoardActivity : AppCompatActivity() {
         val intent = Intent(this, UserListActivity::class.java)
         startActivity(intent)
     }
+
+    fun openAllProgramsActivity (view: View){
+        val intent = Intent(this, AllProgramsActivity::class.java)
+        startActivity(intent)
+    }
 }
