@@ -109,17 +109,22 @@ class ChatActivity : AppCompatActivity() {
 
     /* Adds messge to Firebase */
     private fun addMsgToDatabase(messageObject : Message, senderName : String, senderProfilePic : String) {
+       //1
         messagesRef.document(senderRoom!!).collection("Messages")
             .add(messageObject)
             .addOnSuccessListener { documentReference ->
+                //2
                 messagesRef.document(receiverRoom!!).collection("Messages")
                     .add(messageObject)
                 Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
                 Log.d("msg", "Sender name is: $senderName")
+                //3
             }
             .addOnFailureListener { e ->
                 Log.d("msg", "Error adding document", e)
+                //4
             }
+        //5
         messageBox.setText("")
     }
 }

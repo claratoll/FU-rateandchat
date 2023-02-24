@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,8 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         holder.teamNumberView.text = team.teamNumber.toString()
         Picasso.get().load(team.logoImage).into(holder.imageLogoView)
         holder.teamPosition = position
+        holder.moveUpButton.setOnClickListener{}
+        holder.moveDownButton.setOnClickListener{}
     }
 
 
@@ -37,6 +40,8 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         val teamNumberView = itemView.findViewById<TextView>(R.id.rankingNumberTextView)
         val teamNameView = itemView.findViewById<TextView>(R.id.teamNameTextView)
         val imageLogoView = itemView.findViewById<ImageView>(R.id.teamlogoImageView)
+        val moveUpButton = itemView.findViewById<ImageButton>(R.id.moveDownButton)
+        val moveDownButton = itemView.findViewById<ImageButton>(R.id.moveDownButton)
         var teamPosition = 0
 
     }
