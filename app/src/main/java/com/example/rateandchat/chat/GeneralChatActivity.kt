@@ -77,7 +77,8 @@ class GeneralChatActivity : AppCompatActivity() {
                         Log.d("nameQuery", "${document.id} => ${document.data}")
                         //val senderUid = FirebaseAuth.getInstance().currentUser?.uid
                         val senderName = document.toObject<User>().name.toString()
-                        val messageObject = Message(message, senderUid, senderName)
+                        val senderProfilePic = document.toObject<User>().profilePic.toString()
+                        val messageObject = Message(message, senderUid, senderName, senderProfilePic)
 
                         messagesRef.document(generalRoom).collection("Messages")
                             .add(messageObject)
