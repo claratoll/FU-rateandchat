@@ -7,6 +7,7 @@ data class Message(
     var message : String? = null,
     var senderId : String? = null,
     var senderName : String? = null,
+    var senderProfilePic : String? = null,
     @ServerTimestamp val timestamp : Date? = null
 )
 

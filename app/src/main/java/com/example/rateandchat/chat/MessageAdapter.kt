@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Message
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 
 class MessageAdapter(val context : Context, val messageList : ArrayList<Message>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -58,6 +60,7 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
             val viewHolder = holder as ReceivedViewHolder
             holder.receivedMessage.text = currentMessage.message
             holder.senderName.text = currentMessage.senderName
+            Picasso.get().load(currentMessage.senderProfilePic).into(holder.senderImage)
         }
     }
 
@@ -70,6 +73,7 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
     inner class ReceivedViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val receivedMessage = itemView.findViewById<TextView>(R.id.txt_received_message)
         val senderName = itemView.findViewById<TextView>(R.id.senderNameText)
+        val senderImage = itemView.findViewById<ImageView>(R.id.profileImageView)
     }
 
 }

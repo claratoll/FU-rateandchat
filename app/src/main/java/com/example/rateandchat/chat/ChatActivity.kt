@@ -93,9 +93,10 @@ class ChatActivity : AppCompatActivity() {
                     for (document in documents) {
                         Log.d("nameQuery", "${document.id} => ${document.data}")
                         val senderName = document.toObject<User>().name.toString()
-                        val messageObject = Message(message, senderUid, senderName)
+                        val senderProfilePic = document.toObject<User>().profilePic.toString()
+                        val messageObject = Message(message, senderUid, senderName, senderProfilePic)
 
-                        addMsgToDatabase(messageObject, senderName)
+                        addMsgToDatabase(messageObject, senderName, senderProfilePic)
 
                     }
                 }
@@ -107,7 +108,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     /* Adds messge to Firebase */
-    private fun addMsgToDatabase(messageObject : Message, senderName : String) {
+    private fun addMsgToDatabase(messageObject : Message, senderName : String, senderProfilePic : String) {
         messagesRef.document(senderRoom!!).collection("Messages")
             .add(messageObject)
             .addOnSuccessListener { documentReference ->
