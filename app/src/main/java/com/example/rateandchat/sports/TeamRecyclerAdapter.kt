@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
+import com.squareup.picasso.Picasso
 
 
 class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): RecyclerView.Adapter<TeamRecyclerAdapter.ViewHolder>() {
@@ -25,7 +26,7 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         val team = teams[position]
         holder.teamNameView.text = team.teamName.toString()
         holder.teamNumberView.text = team.teamNumber.toString()
-        //holder.imageLogoView.setImageResource(team.logoImage!!)
+        Picasso.get().load(team.logoImage).into(holder.imageLogoView)
         holder.teamPosition = position
     }
 

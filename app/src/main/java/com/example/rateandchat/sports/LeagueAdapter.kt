@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.League
 import com.example.rateandchat.programs.ProgramInfo
+import com.squareup.picasso.Picasso
 
 class LeagueAdapter(val context : Context, val leagues : List<League>)
     : RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
@@ -26,7 +27,7 @@ class LeagueAdapter(val context : Context, val leagues : List<League>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val thisLeague = leagues[position]
         holder.name.text = thisLeague.leagueName.toString()
-      //  holder.image.setImageResource(thisLeague.leagueLogo!!)
+        Picasso.get().load(thisLeague.leagueLogo).into(holder.image)
         holder.listItemPosition = position
 
         holder.itemView.setOnClickListener{
