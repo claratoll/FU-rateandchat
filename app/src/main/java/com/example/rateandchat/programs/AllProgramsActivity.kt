@@ -1,9 +1,10 @@
-package com.example.rateandchat
+package com.example.rateandchat.programs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.example.rateandchat.R
 
 class AllProgramsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

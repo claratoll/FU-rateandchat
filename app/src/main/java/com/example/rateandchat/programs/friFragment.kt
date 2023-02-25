@@ -1,4 +1,4 @@
-package com.example.rateandchat
+package com.example.rateandchat.programs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -19,13 +20,12 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MonFragment.newInstance] factory method to
+ * Use the [friFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MonFragment : Fragment() {
+class friFragment : Fragment() {
     // TODO: Rename and change types of parameters
-
-    private val mondayProgramsList = mutableListOf<FragmentDataClass>()
+    private val fridayProgramsList = mutableListOf<FragmentDataClass>()
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FragmentAdapter
@@ -45,7 +45,7 @@ class MonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mon, container, false)
+        return inflater.inflate(R.layout.fragment_fri, container, false)
     }
 
     companion object {
@@ -55,38 +55,37 @@ class MonFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MonFragment.
+         * @return A new instance of fragment friFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MonFragment().apply {
+            friFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         downloadData()
         val layoutManager = LinearLayoutManager(context)
-        recyclerView = view.findViewById(R.id.fragmentRV)
+        recyclerView = view.findViewById(R.id.fri_RV)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = FragmentAdapter(context,mondayProgramsList)
+        adapter = FragmentAdapter(context,fridayProgramsList)
         recyclerView.adapter = adapter
     }
-    //to download the data into "mondayProgramList" list.
+    //To get the data from firebase into the list "fridayProgramList"
     private fun downloadData(){
         db = Firebase.firestore
-        db.collection("monday").get().addOnSuccessListener { documentSnapShot ->
-            mondayProgramsList.clear()
+        db.collection("friday").get().addOnSuccessListener { documentSnapShot ->
+            fridayProgramsList.clear()
             for (document in documentSnapShot.documents){
                 val program = document.toObject<FragmentDataClass>()
                 if (program != null){
-                    mondayProgramsList.add(program)
+                    fridayProgramsList.add(program)
                 }
             }
             recyclerView.adapter?.notifyDataSetChanged()

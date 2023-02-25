@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.rateandchat.R
+import com.squareup.picasso.Picasso
 
 class ProgramInfo : AppCompatActivity() {
     lateinit var heading : TextView
@@ -17,16 +18,17 @@ class ProgramInfo : AppCompatActivity() {
 
 
         //show information about the program
-        val name = intent.getStringExtra("program")
-        val info = intent.getStringExtra("info")
-        //val getImage = intent.getExtra("image")
+        val name = intent.getStringExtra("name")
+        val time = intent.getStringExtra("time")
+        val getImage = intent.getStringExtra("image")
 
         heading = findViewById(R.id.headingTV)
         image = findViewById(R.id.imageIV)
         description = findViewById(R.id.descriptionTV)
 
         heading.text = name
-        description.text = info
+        description.text = time
+        Picasso.get().load(getImage).into(image)
 
     }
 }
