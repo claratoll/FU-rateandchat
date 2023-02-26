@@ -7,7 +7,7 @@ import android.view.View
 import com.example.rateandchat.*
 import com.example.rateandchat.profile.MyPageActivity
 import com.example.rateandchat.profile.UserListActivity
-import com.example.rateandchat.programs.ProgramsActivity
+import com.example.rateandchat.programs.AllProgramsActivity
 import com.example.rateandchat.sports.SportsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -33,12 +33,6 @@ class DashBoardActivity : AppCompatActivity() {
 
     fun openMyPageActivity (view: View){
         val intent = Intent(this, MyPageActivity::class.java)
-        startActivity(intent)
-    }
-
-
-    fun openTvProgramsActivity (view : View){
-        val intent = Intent(this, ProgramsActivity::class.java)
         startActivity(intent)
     }
 
