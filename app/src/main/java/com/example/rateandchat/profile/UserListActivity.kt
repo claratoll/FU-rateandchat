@@ -49,6 +49,7 @@ class UserListActivity : AppCompatActivity() {
 
         generalChatFab.setOnClickListener {
             val intent = Intent(this, GeneralChatActivity::class.java)
+            intent.putExtra("roomName", "dummychat")
             startActivity(intent)
         }
 

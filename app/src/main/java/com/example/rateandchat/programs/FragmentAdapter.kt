@@ -35,6 +35,7 @@ class FragmentAdapter(val context: Context?, val programs: List<FragmentDataClas
             intent.putExtra("name", program.name)
             intent.putExtra("image", program.image)
             intent.putExtra("time", program.time)
+            intent.putExtra("documentId", program.documentId)
             context!!.startActivity(intent)
         }
     }
