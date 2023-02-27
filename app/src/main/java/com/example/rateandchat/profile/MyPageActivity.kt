@@ -34,6 +34,7 @@ class MyPageActivity : BasicActivity() {
         profilePic = findViewById(R.id.profileIV)
         downloadImage()
         usersRef = db.collection("Users")
+
 // to get the user name into my page activity.
         usersRef.whereEqualTo("uid", currentUser)
             .get()
