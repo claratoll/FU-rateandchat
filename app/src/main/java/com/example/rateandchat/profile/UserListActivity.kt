@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.chat.GeneralChatActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class UserListActivity : AppCompatActivity() {
+class UserListActivity : BasicActivity() {
 
     private lateinit var userRecyclerView : RecyclerView
     private lateinit var userList: ArrayList<User>
@@ -31,8 +32,6 @@ class UserListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list)
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         auth = FirebaseAuth.getInstance()
         db = Firebase.firestore

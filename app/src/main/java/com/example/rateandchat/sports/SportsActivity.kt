@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Game
 import com.example.rateandchat.dataclass.Team
@@ -15,7 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class SportsActivity : AppCompatActivity() {
+class SportsActivity : BasicActivity() {
 
     val listOfGames = mutableListOf<Game>()
 
@@ -39,8 +40,6 @@ class SportsActivity : AppCompatActivity() {
 
         getGameData()
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
     }
 
     private fun getGameData() {

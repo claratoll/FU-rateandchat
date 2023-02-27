@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
@@ -29,8 +30,6 @@ class CreateUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user)
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         //login to app
         auth = Firebase.auth
@@ -42,7 +41,6 @@ class CreateUserActivity : AppCompatActivity() {
         nameView = findViewById(R.id.createNameEditView)
         emailView = findViewById(R.id.createEditEmailView)
         passwordView = findViewById(R.id.createEditPasswordText)
-
     }
 
     fun signUp (view: View){

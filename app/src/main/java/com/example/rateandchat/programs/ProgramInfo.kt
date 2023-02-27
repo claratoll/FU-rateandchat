@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.squareup.picasso.Picasso
 
-class ProgramInfo : AppCompatActivity() {
+class ProgramInfo : BasicActivity() {
     lateinit var heading : TextView
     lateinit var image : ImageView
     lateinit var description : TextView

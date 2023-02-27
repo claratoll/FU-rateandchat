@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.example.rateandchat.profile.UserAdapter
@@ -17,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 
 
 // Shows all users as chat contact list. Click on a user to start chatting (opens chat activity).
-class ChatAppActivity : AppCompatActivity() {
+class ChatAppActivity : BasicActivity() {
 
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userList: ArrayList<User>
