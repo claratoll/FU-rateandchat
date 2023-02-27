@@ -46,8 +46,15 @@ class SeasonGuessActivity : BasicActivity() {
 
         getTeamData()
 
+        val imageLogoView = findViewById<ImageView>(R.id.leagueLogoImageView)
+
         //leagueID is stored in a variable which will be used to sort the teams correctly
         leagueID = intent.getStringExtra("league name")!!
+        val leagueLogo = intent.getStringExtra("league image")
+
+        if (leagueLogo?.isNotEmpty()!!) {
+            Picasso.get().load(leagueLogo).into(imageLogoView)
+        }
     }
 
     fun teamLists() {
