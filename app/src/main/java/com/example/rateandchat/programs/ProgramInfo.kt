@@ -12,6 +12,7 @@ class ProgramInfo : BasicActivity() {
     lateinit var heading : TextView
     lateinit var image : ImageView
     lateinit var description : TextView
+    lateinit var information : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +23,16 @@ class ProgramInfo : BasicActivity() {
         val name = intent.getStringExtra("name")
         val time = intent.getStringExtra("time")
         val getImage = intent.getStringExtra("image")
+        val info = intent.getStringExtra("info")
 
         heading = findViewById(R.id.headingTV)
         image = findViewById(R.id.imageIV)
         description = findViewById(R.id.descriptionTV)
+        information = findViewById(R.id.infoTV)
 
         heading.text = name
         description.text = time
+        information.text = info
         Picasso.get().load(getImage).into(image)
 
     }

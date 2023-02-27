@@ -24,42 +24,42 @@
 
     <ImageButton
         android:id="@+id/monButton"
-        android:layout_width="75dp"
+        android:layout_width="69dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tueButton"
-        app:srcCompat="@drawable/mon" />
+        app:srcCompat="@drawable/one" />
 
     <ImageButton
         android:id="@+id/tueButton"
-        android:layout_width="75dp"
+        android:layout_width="69dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/wedButton"
-        app:srcCompat="@drawable/tue" />
+        app:srcCompat="@drawable/two" />
 
     <ImageButton
         android:id="@+id/wedButton"
-        android:layout_width="75dp"
+        android:layout_width="69dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/wed" />
+        app:srcCompat="@drawable/three" />
 
     <ImageButton
         android:id="@+id/thuButton"
-        android:layout_width="75dp"
+        android:layout_width="69dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/wedButton"
-        app:srcCompat="@drawable/thur" />
+        app:srcCompat="@drawable/four" />
 
     <ImageButton
         android:id="@+id/friButton"
-        android:layout_width="75dp"
+        android:layout_width="69dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/thuButton"
-        app:srcCompat="@drawable/fri" />
+        app:srcCompat="@drawable/five" />
 </androidx.constraintlayout.widget.ConstraintLayout>
