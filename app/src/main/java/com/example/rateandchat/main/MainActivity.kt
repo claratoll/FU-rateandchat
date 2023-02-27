@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         //Log in with google
         googleLoInTextView = findViewById(R.id.googleLogIn)

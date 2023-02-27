@@ -30,7 +30,6 @@ class LiveGameAdapter (val context: Context, val games : List <Game>): RecyclerV
         Picasso.get().load(game.image).into(holder.imageLogoView)
         holder.teamPosition = position
 
-
         holder.itemView.setOnClickListener{
             val intent = Intent(context , GuessResultActivity::class.java)
             intent.putExtra("teamAPlaying", game.teamAPlaying.toString())
@@ -39,15 +38,11 @@ class LiveGameAdapter (val context: Context, val games : List <Game>): RecyclerV
         }
     }
 
-
     override fun getItemCount() = games.size
 
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
         val teamNameView = itemView.findViewById<TextView>(R.id.nameItemTextView)
         val imageLogoView = itemView.findViewById<ImageView>(R.id.ItemImageView)
         var teamPosition = 0
-
     }
-
-
 }

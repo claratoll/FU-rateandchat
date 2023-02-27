@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
 import com.example.rateandchat.profile.ProfilePic
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 
-class SeasonGuessActivity : AppCompatActivity() {
+class SeasonGuessActivity : BasicActivity() {
 
     val listOfTeams = mutableListOf<Team>()
 
@@ -33,9 +34,6 @@ class SeasonGuessActivity : AppCompatActivity() {
         setContentView(R.layout.activity_season_guess)
 
         db = Firebase.firestore
-
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         recyclerView = findViewById(R.id.teamRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -69,9 +67,7 @@ class SeasonGuessActivity : AppCompatActivity() {
         Log.v("!!!", "move down")
     }
 
-
     private fun getTeamData(){
-
         //get teams from firebase and save it in an array which is shown in the recyclerview
 
         db.collection("Team")

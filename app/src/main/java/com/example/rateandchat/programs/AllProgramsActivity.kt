@@ -1,12 +1,22 @@
 package com.example.rateandchat.programs
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
+import com.example.rateandchat.main.MainActivity
+import com.example.rateandchat.profile.MyPageActivity
+import com.example.rateandchat.profile.UserListActivity
+import com.google.firebase.auth.FirebaseAuth
 
-class AllProgramsActivity : AppCompatActivity() {
+class AllProgramsActivity : BasicActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_programs)

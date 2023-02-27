@@ -64,7 +64,6 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
         }
     }
 
-
     // Two different view holders, depending on whether the message is sent or received
     inner class SentViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val sentMessage = itemView.findViewById<TextView>(R.id.txt_sent_message)

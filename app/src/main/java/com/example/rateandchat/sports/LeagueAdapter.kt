@@ -45,9 +45,5 @@ class LeagueAdapter(val context : Context, val leagues : List<League>)
         val name = itemView.findViewById<TextView>(R.id.nameItemTextView)
         val image = itemView.findViewById<ImageView>(R.id.ItemImageView)
         var listItemPosition = 0
-
-
-
-
     }
 }
