@@ -57,7 +57,14 @@ class SeasonGuessActivity : AppCompatActivity() {
         //idk here we could have arrays of the teams that are standard?
     }
 
-    fun moveTeams(view :View) {
+        //and then this function where the user moves the teams in what other he thinks the teams will end in the end of the seaso
+    fun saveToFirebase(){
+        //and then the user uploads his results to the firebase
+    }
+
+    fun moveUpClick(view: View){
+        val moveUpButton = findViewById<ImageButton>(R.id.moveUpButton)
+        moveUpButton.setOnClickListener {
             fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
                 val tmp = this[index1]
                 this[index1] = this[index2]
@@ -65,17 +72,19 @@ class SeasonGuessActivity : AppCompatActivity() {
             }
             listOfTeams.swap(0, 1)
         }
-        //and then this function where the user moves the teams in what other he thinks the teams will end in the end of the seaso
-
-    fun saveToFirebase(){
-        //and then the user uploads his results to the firebase
-    }
-
-    fun moveUpClick(view: View){
         Log.v("!!!", "move up")
     }
 
     fun moveDownClick(view: View){
+        val moveDownButton = findViewById<ImageButton>(R.id.moveDownButton)
+        moveDownButton.setOnClickListener {
+            fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+                val tmp = this[index1]
+                this[index1] = this[index2]
+                this[index2] = tmp
+            }
+            listOfTeams.swap(1, 0)
+        }
         Log.v("!!!", "move down")
     }
 
