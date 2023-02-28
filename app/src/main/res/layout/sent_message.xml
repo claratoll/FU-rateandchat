@@ -25,7 +25,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="@string/this_is_a_sent_message"
             android:textAlignment="textStart"
             android:textColor="@color/black"

@@ -29,8 +29,10 @@ class GeneralChatActivity : BasicActivity() {
     private lateinit var db : FirebaseFirestore
     private lateinit var messagesRef : CollectionReference
 
+
     var receiverRoom : String? = null
-    var generalRoom : String = "dummychat"
+    var roomName : String? = null
+    //var generalRoom : String = "dummychat"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class GeneralChatActivity : BasicActivity() {
         uidRef = db.collection("Users")
 
         supportActionBar?.title = name
+        roomName = intent.getStringExtra("roomName")
 
         chatRecyclerView = findViewById(R.id.chatRecycleView)
         messageBox = findViewById(R.id.messageBox)
@@ -53,7 +56,7 @@ class GeneralChatActivity : BasicActivity() {
         chatRecyclerView.layoutManager = LinearLayoutManager(this)
         chatRecyclerView.adapter = messageAdapter
 
-        messagesRef.document(generalRoom).collection("Messages")
+        messagesRef.document(roomName!!).collection("Messages")
             .orderBy("timestamp")
             .addSnapshotListener { snapshot, e ->
                 messageList.clear()
@@ -81,18 +84,7 @@ class GeneralChatActivity : BasicActivity() {
                         val senderProfilePic = document.toObject<User>().profilePic.toString()
                         val messageObject = Message(message, senderUid, senderName, senderProfilePic)
 
-                        messagesRef.document(generalRoom).collection("Messages")
-                            .add(messageObject)
-                            .addOnSuccessListener { documentReference ->
-                                messagesRef.document("$receiverRoom").collection("Messages")
-                                    .add(messageObject)
-                                Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.d("msg", "Error adding document", e)
-                            }
-
-                        messageBox.setText("")
+                        addMsgToDatabase(messageObject, senderName, senderProfilePic)
                     }
                 }
                 .addOnFailureListener {exception ->
@@ -101,5 +93,20 @@ class GeneralChatActivity : BasicActivity() {
 
 
         }
+    }
+
+    private fun addMsgToDatabase(messageObject : Message, senderName : String, senderProfilePic : String) {
+        messagesRef.document(roomName!!).collection("Messages")
+            .add(messageObject)
+            .addOnSuccessListener { documentReference ->
+                messagesRef.document("$receiverRoom").collection("Messages")
+                    .add(messageObject)
+                Log.d("msg", "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.d("msg", "Error adding document", e)
+            }
+
+        messageBox.setText("")
     }
 }

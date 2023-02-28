@@ -6,12 +6,14 @@
     android:layout_height="wrap_content"
     android:textAlignment="viewEnd">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:contentDescription="profilepic"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/circle"
+        android:contentDescription="@string/profilepic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +40,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="@string/this_is_a_received_message"
             android:textAlignment="textStart"
             android:textColor="@color/black"
