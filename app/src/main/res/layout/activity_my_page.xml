@@ -78,11 +78,10 @@
         android:id="@+id/HiScoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="High score is: "
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noNameTV" />
 
@@ -119,5 +118,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ToSeasonTipsButton"
         app:layout_constraintVertical_bias="0.174" />
+
+    <TextView
+        android:id="@+id/pointsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="0"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/HiScoreTextView"
+        app:layout_constraintTop_toBottomOf="@+id/noNameTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
