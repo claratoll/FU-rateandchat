@@ -17,30 +17,39 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 
 class MyPageActivity : BasicActivity() {
     lateinit var personName : TextView
+    lateinit var pointsView : TextView
+    lateinit var profilePic : ImageView
+
     lateinit var db :FirebaseFirestore
     private lateinit var usersRef : CollectionReference
-    lateinit var profilePic : ImageView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
 
-
         db = Firebase.firestore
         val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+
         personName = findViewById(R.id.noNameTV)
         profilePic = findViewById(R.id.profileIV)
-        downloadImage()
-        usersRef = db.collection("Users")
+        pointsView = findViewById(R.id.pointsView)
 
+        downloadImage()
+
+
+        usersRef = db.collection("Users")
 // to get the user name into my page activity.
         usersRef.whereEqualTo("uid", currentUser)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     personName.text = document.toObject<User>().name.toString()
+                    pointsView.text = document.toObject<User>().points.toString()
                 }
             }
 

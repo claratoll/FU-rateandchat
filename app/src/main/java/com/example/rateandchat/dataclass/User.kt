@@ -9,5 +9,7 @@ data class User (
     var profilePic : String? = null,
     @DocumentId val documentId: String = "",
     var userName : String? = null, // username is the users email for now
-    var firstName : String? = null // firstName is users real name and the name that will be shown
+    var firstName : String? = null, // firstName is users real name and the name that will be shown
+    var points : Int? = 0
+
         )
