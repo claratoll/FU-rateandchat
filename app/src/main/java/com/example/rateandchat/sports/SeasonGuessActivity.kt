@@ -2,11 +2,14 @@ package com.example.rateandchat.sports
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Selection.moveUp
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
 import com.example.rateandchat.profile.ProfilePic
@@ -17,7 +20,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 
-class SeasonGuessActivity : AppCompatActivity() {
+class SeasonGuessActivity : BasicActivity() {
 
     val listOfTeams = mutableListOf<Team>()
 
@@ -26,7 +29,7 @@ class SeasonGuessActivity : AppCompatActivity() {
     private var leagueID = ""
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter : TeamRecyclerAdapter
+    private lateinit var adapter: TeamRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,6 @@ class SeasonGuessActivity : AppCompatActivity() {
 
         db = Firebase.firestore
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         recyclerView = findViewById(R.id.teamRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -45,27 +46,55 @@ class SeasonGuessActivity : AppCompatActivity() {
 
         getTeamData()
 
+        val imageLogoView = findViewById<ImageView>(R.id.leagueLogoImageView)
+
         //leagueID is stored in a variable which will be used to sort the teams correctly
         leagueID = intent.getStringExtra("league name")!!
+        val leagueLogo = intent.getStringExtra("league image")
+
+        if (leagueLogo?.isNotEmpty()!!) {
+            Picasso.get().load(leagueLogo).into(imageLogoView)
+        }
     }
 
-    fun teamLists(){
+    fun teamLists() {
         //idk here we could have arrays of the teams that are standard?
     }
 
-    fun moveTeams(){
-        //and then this function where the user moves the teams in what other he thinks the teams will end in the end of the season
-    }
+    fun moveTeams(teamA : Int, teamB : Int) {
+
+            fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+                val tmp = this[index1]
+                this[index1] = this[index2]
+                this[index2] = tmp
+
+                Log.v("!!!", "move")
+
+            }
+        listOfTeams.swap(teamA, teamB)
+        adapter.notifyDataSetChanged()
+        }
+        //and then this function where the user moves the teams in what other he thinks the teams will end in the end of the seaso
 
     fun saveToFirebase(){
         //and then the user uploads his results to the firebase
     }
 
     fun moveUpClick(view: View){
+
+        val teamA = 1
+        val teamB = 0
+
+        moveTeams(teamA, teamB)
         Log.v("!!!", "move up")
     }
 
     fun moveDownClick(view: View){
+
+        val teamA = 2
+        val teamB = 1
+
+        moveTeams(teamA, teamB)
         Log.v("!!!", "move down")
     }
 

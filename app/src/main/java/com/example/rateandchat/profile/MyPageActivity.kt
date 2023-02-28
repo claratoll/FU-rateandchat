@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.example.rateandchat.main.DashBoardActivity
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 
-class MyPageActivity : AppCompatActivity() {
+class MyPageActivity : BasicActivity() {
     lateinit var personName : TextView
     lateinit var db :FirebaseFirestore
     private lateinit var usersRef : CollectionReference
@@ -26,8 +27,6 @@ class MyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
 
         db = Firebase.firestore
         val currentUser = FirebaseAuth.getInstance().currentUser?.uid
@@ -35,6 +34,7 @@ class MyPageActivity : AppCompatActivity() {
         profilePic = findViewById(R.id.profileIV)
         downloadImage()
         usersRef = db.collection("Users")
+
 // to get the user name into my page activity.
         usersRef.whereEqualTo("uid", currentUser)
             .get()

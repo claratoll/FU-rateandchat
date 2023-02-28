@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class EditMyPageActivity : AppCompatActivity() {
+class EditMyPageActivity : BasicActivity() {
     lateinit var userImage : ImageView
     private var imageUri : Uri? = null
     lateinit var storageRef : StorageReference
@@ -31,8 +32,7 @@ class EditMyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_my_page)
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
+
 
         userImage = findViewById(R.id.pickImageIV)
         val save = findViewById<Button>(R.id.saveButton)

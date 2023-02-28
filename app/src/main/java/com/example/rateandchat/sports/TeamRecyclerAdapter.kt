@@ -38,7 +38,5 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         val teamNameView = itemView.findViewById<TextView>(R.id.teamNameTextView)
         val imageLogoView = itemView.findViewById<ImageView>(R.id.teamlogoImageView)
         var teamPosition = 0
-
     }
-
 }

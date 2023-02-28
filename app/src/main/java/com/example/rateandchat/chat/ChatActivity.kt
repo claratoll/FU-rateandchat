@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Message
 import com.example.rateandchat.dataclass.User
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 // 1 on 1 chatroom
-class ChatActivity : AppCompatActivity() {
+class ChatActivity : BasicActivity() {
 
     private lateinit var chatRecyclerView: RecyclerView
     private lateinit var messageBox : EditText

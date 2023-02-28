@@ -33,6 +33,7 @@ class LeagueAdapter(val context : Context, val leagues : List<League>)
         holder.itemView.setOnClickListener{
             val intent = Intent(context , SeasonGuessActivity::class.java)
             intent.putExtra("league name", thisLeague.leagueName.toString())
+            intent.putExtra("league image", thisLeague.leagueLogo)
             context.startActivity(intent)
         }
     }
@@ -45,9 +46,5 @@ class LeagueAdapter(val context : Context, val leagues : List<League>)
         val name = itemView.findViewById<TextView>(R.id.nameItemTextView)
         val image = itemView.findViewById<ImageView>(R.id.ItemImageView)
         var listItemPosition = 0
-
-
-
-
     }
 }

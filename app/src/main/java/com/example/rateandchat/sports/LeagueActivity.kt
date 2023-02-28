@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.League
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,7 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class LeagueActivity : AppCompatActivity() {
+class LeagueActivity : BasicActivity() {
 
     val listOfLeagues = mutableListOf<League>()
     private lateinit var db: FirebaseFirestore
@@ -25,8 +26,6 @@ class LeagueActivity : AppCompatActivity() {
 
         db = Firebase.firestore
 
-        //gömmer Action Bar längst upp
-        supportActionBar?.hide()
         recyclerView = findViewById(R.id.leagueRecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)

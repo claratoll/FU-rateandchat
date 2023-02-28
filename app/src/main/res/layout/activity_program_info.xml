@@ -33,8 +33,8 @@
 
     <TextView
         android:id="@+id/descriptionTV"
-        android:layout_width="337dp"
-        android:layout_height="181dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="TextView"
         android:textAlignment="textStart"
@@ -47,12 +47,12 @@
         android:id="@+id/programVoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="Vote"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
+        app:layout_constraintTop_toBottomOf="@+id/infoTV" />
 
     <Button
         android:id="@+id/chatButton"
@@ -63,4 +63,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/programVoteButton" />
+
+    <TextView
+        android:id="@+id/infoTV"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

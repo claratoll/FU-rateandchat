@@ -11,7 +11,7 @@
         android:id="@+id/toLoginActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:onClick="loginButton"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         android:id="@+id/toCreateAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:onClick="createButton"
         android:text="create account"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +33,7 @@
         android:id="@+id/googleLogIn"
         android:layout_width="281dp"
         android:layout_height="41dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rectangle"
         android:elegantTextHeight="true"
         android:onClick="signInGoogle"
@@ -40,11 +41,9 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toCreateAccountButton"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintTop_toBottomOf="@+id/toCreateAccountButton" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -61,12 +60,10 @@
         android:id="@+id/logoImage"
         android:layout_width="332dp"
         android:layout_height="384dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118"
         app:srcCompat="@drawable/welcome" />
 
     <ImageView
