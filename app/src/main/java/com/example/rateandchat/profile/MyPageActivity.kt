@@ -3,13 +3,18 @@ package com.example.rateandchat.profile
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rateandchat.BasicActivity
+import com.example.rateandchat.Position.ifUserHasSavedSeason
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.User
 import com.example.rateandchat.main.DashBoardActivity
+import com.example.rateandchat.sports.LeagueActivity
+import com.example.rateandchat.sports.SeasonGuessActivity
+import com.example.rateandchat.sports.SportsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,6 +28,7 @@ class MyPageActivity : BasicActivity() {
     lateinit var personName : TextView
     lateinit var pointsView : TextView
     lateinit var profilePic : ImageView
+    lateinit var seasonTipsButton : Button
 
     lateinit var db :FirebaseFirestore
     private lateinit var usersRef : CollectionReference
@@ -52,6 +58,14 @@ class MyPageActivity : BasicActivity() {
                     pointsView.text = document.toObject<User>().points.toString()
                 }
             }
+
+
+        seasonTipsButton = findViewById(R.id.ToSeasonTipsButton)
+        seasonTipsButton.setOnClickListener {
+            val intent = Intent(this, LeagueActivity::class.java)
+            ifUserHasSavedSeason = true
+            this.startActivity(intent)
+        }
 
     }
 

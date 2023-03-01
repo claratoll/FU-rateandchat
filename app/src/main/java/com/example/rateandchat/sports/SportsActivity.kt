@@ -8,6 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.BasicActivity
+import com.example.rateandchat.Position.ifUserHasSavedSeason
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Game
 import com.example.rateandchat.dataclass.Team
@@ -40,6 +41,7 @@ class SportsActivity : BasicActivity() {
 
         getGameData()
 
+        ifUserHasSavedSeason = false
     }
 
     private fun getGameData() {
@@ -66,7 +68,8 @@ class SportsActivity : BasicActivity() {
                     listOfGames.addAll(gameArray)
                     adapter.notifyDataSetChanged()
                 }
-            }    }
+            }
+    }
 
     fun openLeagueActivity (view: View){
         val intent = Intent(this, LeagueActivity::class.java)

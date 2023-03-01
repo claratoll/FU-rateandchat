@@ -72,12 +72,15 @@ class CreateUserActivity : AppCompatActivity() {
 
     // Adds user to firestore with its own uid (from auth.currentUser.uid)
     private fun addUserToDatabase(name : String, email : String, uid : String) {
-        usersRef.add(User(name, email, uid))
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this@CreateUserActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this@CreateUserActivity, "Error handling document", Toast.LENGTH_SHORT).show()
-            }
+        auth.currentUser?.let {
+            usersRef.document(it.uid)
+                .set(User(name, email, uid))
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this@CreateUserActivity, "DocumentSnapshot added with ID", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this@CreateUserActivity, "Error handling document", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }
