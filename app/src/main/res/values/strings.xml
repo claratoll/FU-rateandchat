@@ -7,4 +7,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profilepic">profilepic</string>
+    <string name="plot">Plot</string>
+    <string name="acting">Acting</string>
+    <string name="writing">Writing</string>
+    <string name="directing">Directing</string>
+    <string name="soundtrack">Soundtrack</string>
+    <string name="average_rating">Average Rating</string>
+    <string name="your_ratings">Your Ratings</string>
+    <string name="server_averages">Server Averages</string>
+    <string name="content_title">Content Title</string>
+    <string name="back">Back</string>
 </resources>

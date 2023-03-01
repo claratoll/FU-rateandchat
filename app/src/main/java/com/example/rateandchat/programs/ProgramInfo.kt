@@ -1,7 +1,6 @@
 package com.example.rateandchat.programs
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -9,6 +8,7 @@ import android.widget.TextView
 import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.chat.GeneralChatActivity
+import com.example.rateandchat.main.FilmRatingActivity
 import com.squareup.picasso.Picasso
 
 class ProgramInfo : BasicActivity() {
@@ -17,6 +17,7 @@ class ProgramInfo : BasicActivity() {
     lateinit var description : TextView
 
     lateinit var chatBtn : Button
+    lateinit var voteBtn : Button
 
     lateinit var information : TextView
 
@@ -38,6 +39,7 @@ class ProgramInfo : BasicActivity() {
         description = findViewById(R.id.descriptionTV)
 
         chatBtn = findViewById(R.id.chatButton)
+        voteBtn = findViewById(R.id.programVoteButton)
 
         information = findViewById(R.id.infoTV)
 
@@ -50,6 +52,13 @@ class ProgramInfo : BasicActivity() {
         chatBtn.setOnClickListener {
             val intent = Intent(this, GeneralChatActivity::class.java)
             intent.putExtra("roomName", name)
+            intent.putExtra("documentId", documentId)
+            startActivity(intent)
+        }
+
+        voteBtn.setOnClickListener {
+            val intent = Intent(this, FilmRatingActivity::class.java)
+            intent.putExtra("name", name)
             intent.putExtra("documentId", documentId)
             startActivity(intent)
         }
