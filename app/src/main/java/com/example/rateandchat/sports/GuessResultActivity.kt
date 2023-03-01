@@ -32,8 +32,10 @@ class GuessResultActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guess_result)
 
-        val teamA = intent.getStringExtra("teamAPlaying")!!
-        val teamB = intent.getStringExtra("teamBPlaying")!!
+        val teamA = intent.getStringExtra("teamAPlaying")
+        val teamB = intent.getStringExtra("teamBPlaying")
+
+
 
         //displays which teams user can vote on
 

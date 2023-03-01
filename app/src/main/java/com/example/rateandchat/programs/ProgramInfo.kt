@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.chat.GeneralChatActivity
+import com.example.rateandchat.sports.GuessResultActivity
 import com.squareup.picasso.Picasso
 
 class ProgramInfo : BasicActivity() {
@@ -17,6 +18,7 @@ class ProgramInfo : BasicActivity() {
     lateinit var description : TextView
 
     lateinit var chatBtn : Button
+    lateinit var voteBtn : Button
 
     lateinit var information : TextView
 
@@ -38,6 +40,7 @@ class ProgramInfo : BasicActivity() {
         description = findViewById(R.id.descriptionTV)
 
         chatBtn = findViewById(R.id.chatButton)
+        voteBtn = findViewById(R.id.programVoteButton)
 
         information = findViewById(R.id.infoTV)
 
@@ -51,6 +54,12 @@ class ProgramInfo : BasicActivity() {
             val intent = Intent(this, GeneralChatActivity::class.java)
             intent.putExtra("roomName", name)
             intent.putExtra("documentId", documentId)
+            startActivity(intent)
+        }
+
+        voteBtn.setOnClickListener {
+            val intent = Intent(this, GuessResultActivity::class.java)
+
             startActivity(intent)
         }
 

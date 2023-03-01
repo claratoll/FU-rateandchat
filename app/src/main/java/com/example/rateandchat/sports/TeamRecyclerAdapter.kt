@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.Position.teamNameSave
 import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
@@ -51,8 +52,11 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
 
 
         init {
+
+
             moveUpButton.setOnClickListener {
                 teamNumberSave = teamPosition +1
+                teamNameSave = teamNameView.toString()
 
                 if (context is SeasonGuessActivity){
                     context.moveUpClick(teamPosition)
