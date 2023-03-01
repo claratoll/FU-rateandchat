@@ -23,6 +23,7 @@ open class BasicActivity : AppCompatActivity(){
         // Handle item selection
         return when (item.itemId) {
             R.id.logOutOption -> {
+                FirebaseAuth.getInstance().signOut()
                 //auth.signOut()
                 //val intent = Intent(this, MainActivity::class.java)
                 //startActivity(intent)

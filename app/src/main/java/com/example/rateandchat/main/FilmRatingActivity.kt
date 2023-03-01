@@ -13,7 +13,6 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.tasks.await
 
 class FilmRatingActivity : AppCompatActivity() {
 
@@ -36,7 +35,6 @@ class FilmRatingActivity : AppCompatActivity() {
         db = Firebase.firestore
         auth = FirebaseAuth.getInstance()
 
-        val itemRatingList = arrayListOf(plotRating.rating, actingRating.rating, writingRating.rating, directingRating.rating, soundtrackRating.rating)
 
         backBtn = findViewById(R.id.backToContent)
         filmTitle = findViewById(R.id.filmTitleTextView)
@@ -49,15 +47,30 @@ class FilmRatingActivity : AppCompatActivity() {
 
         userAvgRating.rating = (plotRating.rating + actingRating.rating + writingRating.rating + directingRating.rating + soundtrackRating.rating)/5
 
+        val itemRatingList = arrayListOf(plotRating.rating, actingRating.rating, writingRating.rating, directingRating.rating, soundtrackRating.rating)
         val usersRef = db.collection("Users")
         val currentUid = auth.currentUser!!.uid
-        val currentUserDocumentId = getCurrentUserDocId()
         val name = intent.getStringExtra("name")
         val documentId = intent.getStringExtra("documentId")
-        val currentFilmRef = usersRef.document(currentUserDocumentId!!)
 
-        currentFilmRef.collection("myFilmRatings")
+        var currentUserDocumentId = "jFBmJMDxsr9ctuf6zk8"
+//        val docRef = db.collection("Users").whereEqualTo("uid", auth.currentUser?.uid).limit(1)
+//        docRef.get()
+//            .addOnSuccessListener { documents ->
+//                for (document in documents) {
+//                    currentUserDocumentId = document.id
+//                }
+//            }
+//            .addOnFailureListener { e ->
+//                Log.d("uid", " ERROR!")
+//            }
+
+        var currentUserRef = db.collection("Users").document(currentUserDocumentId)
+        val currentFilmRef = currentUserRef.collection("myFilmRatings")
+
+
         filmTitle.text = name
+        Log.d("filmId", "film doc id is $documentId")
 
         val filmRating = FilmRating(documentId, name,
                                     plotRating.rating,
@@ -66,34 +79,42 @@ class FilmRatingActivity : AppCompatActivity() {
                                     directingRating.rating,
                                     soundtrackRating.rating)
 
+        currentFilmRef.add(filmRating)
+            .addOnSuccessListener { document ->
+                Log.d("ratingAdd", "Ratings added, doc created")
+            }
+            .addOnFailureListener { e ->
+                Log.d("ratingAdd", "error")
+            }
+
         plotRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             ratingValues()
             itemRatingList[0] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef.collection("myFilmRatings"))
+            updateFilmRatings(documentId!!, name!!, currentFilmRef)
 
         }
         actingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             ratingValues()
             itemRatingList[1] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef.collection("myFilmRatings"))
+            updateFilmRatings(documentId!!, name!!, currentFilmRef)
         }
         writingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             ratingValues()
             itemRatingList[2] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef.collection("myFilmRatings"))
+            updateFilmRatings(documentId!!, name!!, currentFilmRef)
         }
         directingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             ratingValues()
             itemRatingList[3] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef.collection("myFilmRatings"))
+            updateFilmRatings(documentId!!, name!!, currentFilmRef)
         }
         soundtrackRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             ratingValues()
             itemRatingList[4] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef.collection("myFilmRatings"))
+            updateFilmRatings(documentId!!, name!!, currentFilmRef)
         }
 
-        currentFilmRef.collection("myFilmRatings").add(filmRating)
+        currentFilmRef.add(filmRating)
             .addOnSuccessListener {documentReference ->
                 Log.d("docId", "DocumentSnapshot written with ID: ${documentReference.id}")
             }
@@ -133,20 +154,5 @@ class FilmRatingActivity : AppCompatActivity() {
             }
     }
 
-    fun getCurrentUserDocId(): String {
-        val auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-        val db = FirebaseFirestore.getInstance()
-
-        val docRef = db.collection("users").whereEqualTo("uid", uid).limit(1)
-
-        var docId = ""
-        docRef.get().addOnSuccessListener { documents ->
-            for (doc in documents) {
-                docId = doc.id
-            }
-        }
-
-        return docId
-    }
 }
+

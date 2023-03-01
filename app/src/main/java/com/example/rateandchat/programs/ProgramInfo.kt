@@ -2,6 +2,7 @@ package com.example.rateandchat.programs
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -60,6 +61,7 @@ class ProgramInfo : BasicActivity() {
             val intent = Intent(this, FilmRatingActivity::class.java)
             intent.putExtra("name", name)
             intent.putExtra("documentId", documentId)
+            Log.d("filmId", "film ID is $documentId")
             startActivity(intent)
         }
 
