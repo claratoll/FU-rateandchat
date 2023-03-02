@@ -57,6 +57,10 @@ class FilmRatingActivity : AppCompatActivity() {
         filmTitle.text = name
         Log.d("filmId", "film doc id is $documentId")
 
+        if (name != null) {
+            readOwnRatingsFromDb(name)
+        }
+
 
         plotRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
@@ -116,6 +120,30 @@ class FilmRatingActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.d("docId", "Document not updated.")
             }
+    }
+
+    private fun readOwnRatingsFromDb(name : String) {
+        val docRef = db.collection("FilmRatings").document(auth.currentUser!!.uid + name)
+
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    Log.d("readRating", "DocumentSnapshot data: ${document.data}")
+                    val data = document.data
+                    plotRating.rating = data?.get("plot").toString().toFloat()
+                    actingRating.rating = data?.get("acting")?.toString()!!.toFloat()
+                    writingRating.rating = data?.get("writing")?.toString()!!.toFloat()
+                    directingRating.rating = data?.get("directing").toString().toFloat()
+                    soundtrackRating.rating = data?.get("soundtrack").toString().toFloat()
+                    userAvgRating.rating = data?.get("average").toString().toFloat()
+                } else {
+                    Log.d("readRating", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("readRating", "get failed with ", exception)
+            }
+
     }
 
 }
