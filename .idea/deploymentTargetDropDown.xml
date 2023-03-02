@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\clara\.android\avd\Aragorn.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="R5CR902W6TF" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-03-01T12:05:43.364360400Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-03-01T12:59:18.090355600Z" />
   </component>
 </project>

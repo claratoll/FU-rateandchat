@@ -96,13 +96,11 @@ class SeasonGuessActivity : BasicActivity() {
 
     fun saveToFirebase(){
 
-
         //teamname
         //teamlogo
         //alla lag från listan
 
         val saveTeam = Team ("", teamNumberSave, teamNameSave, leagueLogo, leagueID)
-
 
         auth.currentUser?.uid?.let {
             db.collection("Users").document(it)
@@ -115,7 +113,6 @@ class SeasonGuessActivity : BasicActivity() {
                     Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
                 }
         }
-
         //and then the user uploads his results to the firebase
     }
 
