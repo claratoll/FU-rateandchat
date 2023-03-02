@@ -13,10 +13,16 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
+import com.example.rateandchat.dataclass.User
 import com.example.rateandchat.main.MainActivity
 import com.example.rateandchat.profile.MyPageActivity
 import com.example.rateandchat.profile.UserListActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 class GuessResultActivity : BasicActivity() {
 
@@ -27,6 +33,8 @@ class GuessResultActivity : BasicActivity() {
     lateinit var choiceCheckBox1 : CheckBox
     lateinit var choiceCheckBox2 : CheckBox
     lateinit var choiceCheckBox3 : CheckBox
+    lateinit var db : FirebaseFirestore
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +45,8 @@ class GuessResultActivity : BasicActivity() {
 
 
         //displays which teams user can vote on
-
+        db = Firebase.firestore
+        auth = Firebase.auth
         teamATextView = findViewById(R.id.teamATextView)
         teamBTextView = findViewById(R.id.teamBTextView)
         teamATextView.text = teamA
@@ -56,9 +65,19 @@ class GuessResultActivity : BasicActivity() {
             Toast.makeText(this,"Choose only one choice!!",Toast.LENGTH_SHORT).show()
         }else{
             Toast.makeText(this,"Thank you for your vote!!", Toast.LENGTH_SHORT).show()
+            winning()
             finish()
         }
 
 
+    }
+    fun winning(){
+        val currentUser = auth.currentUser
+        if(choiceCheckBox1.isChecked){
+            db.collection("Users").document(currentUser!!.uid).get().addOnSuccessListener { it ->
+               var points = it.toObject<User>()!!.points!! +1
+                db.collection("Users").document(currentUser.uid).update("points", points)
+            }
+        }
     }
 }

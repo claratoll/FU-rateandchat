@@ -48,15 +48,11 @@ class MyPageActivity : BasicActivity() {
         downloadImage()
 
 
-        usersRef = db.collection("Users")
+        db.collection("Users").document(currentUser!!).get()
 // to get the user name into my page activity.
-        usersRef.whereEqualTo("uid", currentUser)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    personName.text = document.toObject<User>().name.toString()
-                    pointsView.text = document.toObject<User>().points.toString()
-                }
+            .addOnSuccessListener { document ->
+                    personName.text = document.toObject<User>()!!.name.toString()
+                    pointsView.text = document.toObject<User>()!!.points.toString()
             }
 
 
