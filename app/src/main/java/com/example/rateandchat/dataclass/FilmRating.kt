@@ -11,11 +11,7 @@ data class FilmRating (
                 var directing : Float? = null,
                 var soundtrack : Float? = null,
                 var average : Float? = null,
+                var uid : String? = null
                 ) {
 
-    init {
-        if (plot != null && acting != null && writing != null && directing != null && soundtrack != null) {
-            average = (plot!! + acting!! + writing!! + directing!! + soundtrack!!)/5
-        }
-    }
 }

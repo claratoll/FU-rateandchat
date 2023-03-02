@@ -16,14 +16,15 @@ import com.google.firebase.ktx.Firebase
 
 class FilmRatingActivity : AppCompatActivity() {
 
-    lateinit var backBtn : Button
-    lateinit var plotRating : RatingBar
-    lateinit var actingRating : RatingBar
-    lateinit var writingRating : RatingBar
-    lateinit var directingRating : RatingBar
-    lateinit var soundtrackRating : RatingBar
-    lateinit var userAvgRating : RatingBar
-    lateinit var filmTitle : TextView
+    private lateinit var backBtn : Button
+    private lateinit var saveBtn : Button
+    private lateinit var plotRating : RatingBar
+    private lateinit var actingRating : RatingBar
+    private lateinit var writingRating : RatingBar
+    private lateinit var directingRating : RatingBar
+    private lateinit var soundtrackRating : RatingBar
+    private lateinit var userAvgRating : RatingBar
+    private lateinit var filmTitle : TextView
     lateinit var db : FirebaseFirestore
     lateinit var auth : FirebaseAuth
 
@@ -37,6 +38,7 @@ class FilmRatingActivity : AppCompatActivity() {
 
 
         backBtn = findViewById(R.id.backToContent)
+        saveBtn = findViewById(R.id.saveToDbButton)
         filmTitle = findViewById(R.id.filmTitleTextView)
         plotRating = findViewById(R.id.plotUserRating)
         actingRating = findViewById(R.id.actingUserRating)
@@ -47,87 +49,47 @@ class FilmRatingActivity : AppCompatActivity() {
 
         userAvgRating.rating = (plotRating.rating + actingRating.rating + writingRating.rating + directingRating.rating + soundtrackRating.rating)/5
 
-        val itemRatingList = arrayListOf(plotRating.rating, actingRating.rating, writingRating.rating, directingRating.rating, soundtrackRating.rating)
-        val usersRef = db.collection("Users")
-        val currentUid = auth.currentUser!!.uid
+        val ratingsRef = db.collection("FilmRatings")
         val name = intent.getStringExtra("name")
         val documentId = intent.getStringExtra("documentId")
-
-        var currentUserDocumentId = "jFBmJMDxsr9ctuf6zk8"
-//        val docRef = db.collection("Users").whereEqualTo("uid", auth.currentUser?.uid).limit(1)
-//        docRef.get()
-//            .addOnSuccessListener { documents ->
-//                for (document in documents) {
-//                    currentUserDocumentId = document.id
-//                }
-//            }
-//            .addOnFailureListener { e ->
-//                Log.d("uid", " ERROR!")
-//            }
-
-        var currentUserRef = db.collection("Users").document(currentUserDocumentId)
-        val currentFilmRef = currentUserRef.collection("myFilmRatings")
 
 
         filmTitle.text = name
         Log.d("filmId", "film doc id is $documentId")
 
-        val filmRating = FilmRating(documentId, name,
-                                    plotRating.rating,
-                                    actingRating.rating,
-                                    writingRating.rating,
-                                    directingRating.rating,
-                                    soundtrackRating.rating)
 
-        currentFilmRef.add(filmRating)
-            .addOnSuccessListener { document ->
-                Log.d("ratingAdd", "Ratings added, doc created")
-            }
-            .addOnFailureListener { e ->
-                Log.d("ratingAdd", "error")
-            }
-
-        plotRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        plotRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
-            itemRatingList[0] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef)
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
 
         }
-        actingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        actingRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
-            itemRatingList[1] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef)
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
         }
-        writingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        writingRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
-            itemRatingList[2] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef)
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
         }
-        directingRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        directingRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
-            itemRatingList[3] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef)
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
         }
-        soundtrackRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        soundtrackRating.setOnRatingBarChangeListener { _, _, _ ->
             ratingValues()
-            itemRatingList[4] = rating
-            updateFilmRatings(documentId!!, name!!, currentFilmRef)
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
         }
 
-        currentFilmRef.add(filmRating)
-            .addOnSuccessListener {documentReference ->
-                Log.d("docId", "DocumentSnapshot written with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.d("docId", "Document not created.")
-            }
+        saveBtn.setOnClickListener {
+            updateFilmRatings(documentId!!, name!!, ratingsRef)
+        }
 
         backBtn.setOnClickListener {
             finish()
         }
     }
 
-    fun ratingValues() {
+    private fun ratingValues() {
         val plotRatingValue = plotRating.rating
         val actingRatingValue = actingRating.rating
         val writingRatingValue = writingRating.rating
@@ -137,19 +99,21 @@ class FilmRatingActivity : AppCompatActivity() {
         userAvgRating.rating = averageRating
     }
 
-    fun updateFilmRatings(documentId : String, name : String, currentFilmRef : CollectionReference) {
+    private fun updateFilmRatings(documentId : String, name : String, ratingsRef : CollectionReference) {
         val updatedFilmRating = FilmRating(documentId, name,
             plotRating.rating,
             actingRating.rating,
             writingRating.rating,
             directingRating.rating,
-            soundtrackRating.rating)
+            soundtrackRating.rating,
+            userAvgRating.rating,
+            auth.currentUser!!.uid)
 
-        currentFilmRef.document(documentId).set(updatedFilmRating)
+        ratingsRef.document(auth.currentUser!!.uid + name).set(updatedFilmRating)
             .addOnSuccessListener { documentReference ->
                 Log.d("docId", "DocumentSnapshot written with ID: $documentReference")
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener {
                 Log.d("docId", "Document not updated.")
             }
     }
