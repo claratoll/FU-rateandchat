@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rateandchat.Position.teamLogoSave
 import com.example.rateandchat.Position.teamNameSave
 import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
@@ -35,6 +36,9 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         Picasso.get().load(team.logoImage).into(holder.imageLogoView)
         holder.teamPosition = position
 
+       // teamNameSave = team.teamName.toString()
+        //teamLogoSave = team.logoImage
+
     }
 
 
@@ -56,7 +60,11 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
 
             moveUpButton.setOnClickListener {
                 teamNumberSave = teamPosition +1
-                teamNameSave = teamNameView.toString()
+
+                teamNameSave = teamNameView.text.toString()
+                teamLogoSave = imageLogoView.toString()
+
+
 
                 if (context is SeasonGuessActivity){
                     context.moveUpClick(teamPosition)
