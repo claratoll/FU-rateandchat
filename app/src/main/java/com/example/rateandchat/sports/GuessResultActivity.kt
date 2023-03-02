@@ -36,7 +36,6 @@ class GuessResultActivity : BasicActivity() {
         val teamB = intent.getStringExtra("teamBPlaying")
 
 
-
         //displays which teams user can vote on
 
         teamATextView = findViewById(R.id.teamATextView)

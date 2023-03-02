@@ -25,11 +25,9 @@ class SportsActivity : BasicActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : LiveGameAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sports)
-
 
         db = Firebase.firestore
 
