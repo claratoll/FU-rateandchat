@@ -10,6 +10,7 @@ import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.R
 import com.example.rateandchat.chat.GeneralChatActivity
 import com.example.rateandchat.main.FilmRatingActivity
+import com.example.rateandchat.sports.GuessResultActivity
 import com.squareup.picasso.Picasso
 
 class ProgramInfo : BasicActivity() {
@@ -34,6 +35,7 @@ class ProgramInfo : BasicActivity() {
         val time = intent.getStringExtra("time")
         val getImage = intent.getStringExtra("image")
         val info = intent.getStringExtra("info")
+        val type = intent.getStringExtra("type")
 
         heading = findViewById(R.id.headingTV)
         image = findViewById(R.id.imageIV)
@@ -58,11 +60,19 @@ class ProgramInfo : BasicActivity() {
         }
 
         voteBtn.setOnClickListener {
-            val intent = Intent(this, FilmRatingActivity::class.java)
-            intent.putExtra("name", name)
-            intent.putExtra("documentId", documentId)
-            Log.d("filmId", "film ID is $documentId")
-            startActivity(intent)
+            if (type.equals("film")) {
+                val intent = Intent(this, FilmRatingActivity::class.java)
+                intent.putExtra("name", name)
+                intent.putExtra("documentId", documentId)
+                startActivity(intent)
+            } else if (type.equals("sport")) {
+                val intent = Intent(this, GuessResultActivity::class.java)
+                intent.putExtra("name", name)
+                intent.putExtra("documentId", documentId)
+                startActivity(intent)
+            } else {
+                // TODO
+            }
         }
 
     }

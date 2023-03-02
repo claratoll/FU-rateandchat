@@ -39,6 +39,7 @@ class FragmentAdapter(val context: Context?, val programs: List<FragmentDataClas
             intent.putExtra("documentId", program.documentId)
 
             intent.putExtra("info", program.info)
+            intent.putExtra("type", program.type)
 
             context!!.startActivity(intent)
         }
