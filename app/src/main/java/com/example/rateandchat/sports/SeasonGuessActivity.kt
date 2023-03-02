@@ -1,21 +1,22 @@
 package com.example.rateandchat.sports
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Selection.moveUp
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.BasicActivity
+import com.example.rateandchat.Position.ifUserHasSavedSeason
+import com.example.rateandchat.Position.teamLogoSave
+import com.example.rateandchat.Position.teamNameSave
+import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
-import com.example.rateandchat.dataclass.User
-import com.example.rateandchat.profile.ProfilePic
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -26,11 +27,16 @@ import com.squareup.picasso.Picasso
 class SeasonGuessActivity : BasicActivity() {
 
     val listOfTeams = mutableListOf<Team>()
+    val teamArray = mutableListOf<Team>()
 
     private lateinit var db: FirebaseFirestore
     private lateinit var usersRef : CollectionReference
+    lateinit var auth : FirebaseAuth
 
     private var leagueID = ""
+    private lateinit var leagueLogo : String
+
+    private lateinit var saveButton: Button
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TeamRecyclerAdapter
@@ -39,8 +45,9 @@ class SeasonGuessActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_guess)
 
+        val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+        auth = Firebase.auth
         db = Firebase.firestore
-
 
         recyclerView = findViewById(R.id.teamRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -48,16 +55,28 @@ class SeasonGuessActivity : BasicActivity() {
         adapter = TeamRecyclerAdapter(this, listOfTeams)
         recyclerView.adapter = adapter
 
-        getTeamData()
-        
+        saveButton = findViewById(R.id.saveSeasonGuessButton)
+        saveButton.setOnClickListener {
+            saveToFirebase()
+        }
+
+
         //leagueID is stored in a variable which will be used to sort the teams correctly
         leagueID = intent.getStringExtra("league name")!!
-        val leagueLogo = intent.getStringExtra("league image")
+        leagueLogo = intent.getStringExtra("league image")!!
 
         val imageLogoView = findViewById<ImageView>(R.id.leagueLogoImageView)
-        if (leagueLogo?.isNotEmpty()!!) {
+        if (leagueLogo.isNotEmpty()) {
             Picasso.get().load(leagueLogo).into(imageLogoView)
         }
+
+        if (ifUserHasSavedSeason) {
+            getUserTeamData()
+        } else {
+            getTeamData()
+        }
+
+
     }
 
 
@@ -68,39 +87,48 @@ class SeasonGuessActivity : BasicActivity() {
                 val tmp = this[index1]
                 this[index1] = this[index2]
                 this[index2] = tmp
-
-                Log.v("!!!", "move")
-
             }
         listOfTeams.swap(teamA, teamB)
         adapter.notifyDataSetChanged()
     }
 
-    fun saveToFirebase(view: View){
+
+    fun saveToFirebase(){
         //and then the user uploads his results to the firebase
-        usersRef = db.collection("Users")
 
-       /* usersRef.add(listOfTeams).addOnSuccessListener { documentReference ->
-            Toast.makeText(this@SeasonGuessActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
-        }
-            .addOnFailureListener { e ->
-                Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
+        var newTeamName: String
+        var newTeamNumber : Int
+        var newTeamLogo : String
+
+        for (team in listOfTeams){
+            newTeamName = team.teamName.toString()
+            newTeamNumber = team.teamNumber!!
+            newTeamLogo = team.logoImage.toString()
+
+            val saveTeam = Team("", newTeamNumber, newTeamName, newTeamLogo, leagueID)
+
+            auth.currentUser?.uid?.let {
+                db.collection("Users").document(it)
+                    .collection("Team").add(saveTeam).addOnSuccessListener { documentReference ->
+                        Log.v("!!!", "Success")
+                        Toast.makeText(this@SeasonGuessActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.v("!!!", "failure")
+                        Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
+                    }
             }
-*/
-
-        //här ska användaren kunna spara den uppdaterade listan listOfTeams till firebase
-
-        Log.v("!!!", "not saved to database")
-
+        }
     }
 
-    fun moveUpClick(view: View){
+    fun moveUpClick(teamA: Int) {
+        if (teamA == 0){
+            return
+        }
 
         //the number for teamA needs to be collected from the array
         //so that when user presses any up button the number registers and is put as teamA
 
-
-        val teamA = 1
         val teamB = teamA - 1
         Log.v("!!!", "teamA $teamA")
         Log.v("!!!", "teamB $teamB")
@@ -109,32 +137,34 @@ class SeasonGuessActivity : BasicActivity() {
         Log.v("!!!", "move up")
     }
 
-    fun moveDownClick(view: View){
+    fun moveDownClick(teamA : Int){
 
+        val size = listOfTeams.size -1
+
+        Log.v("!!!", "listofTeams ${listOfTeams.size}")
+
+        if (teamA == size){
+            return
+        } else {
+            val teamB = teamA + 1
+
+            moveTeams(teamA, teamB)
+        }
         //the number for teamA needs to be collected from the array
         //so that when user presses any down button the number registers and is put as teamA
-
-        val teamA = 5
-        val teamB = teamA - 1
-
-        Log.v("!!!", "teamA $teamA")
-        Log.v("!!!", "teamB $teamB")
-
-
-        moveTeams(teamA, teamB)
-        Log.v("!!!", "move down")
     }
 
 
-    private fun getTeamData(){
+    fun getUserTeamData(){
+        saveButton.visibility = View.INVISIBLE
 
-        //get teams from firebase and save it in an array which is shown in the recyclerview
-
-        db.collection("Team")
+        auth.currentUser?.let {
+            db.collection("Users").document(it.uid)
+                .collection("Team")
                 .addSnapshotListener { snapshot, e ->
                     listOfTeams.clear()
                     if (snapshot != null) {
-                        val teamArray = mutableListOf<Team>()
+                        //val teamArray = mutableListOf<Team>()
                         for (document in snapshot.documents) {
                             val teamDoc = document.toObject<Team>()
                             if (teamDoc != null) {
@@ -142,6 +172,37 @@ class SeasonGuessActivity : BasicActivity() {
                                 //if the team has the same leagueID as stored above it is saved in the array
                                 if (teamDoc.league.equals(leagueID)){
                                     teamArray.add(teamDoc)
+
+                                }
+                            } else {
+                                Log.v("!!!", "no info")
+                            }
+                        }
+                        teamArray.sortBy { it.teamNumber }
+
+                        listOfTeams.addAll(teamArray)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+        }
+    }
+
+    private fun getTeamData(){
+        //get teams from firebase and save it in an array which is shown in the recyclerview
+
+        db.collection("Team")
+                .addSnapshotListener { snapshot, e ->
+                    listOfTeams.clear()
+                    if (snapshot != null) {
+                        //val teamArray = mutableListOf<Team>()
+                        for (document in snapshot.documents) {
+                            val teamDoc = document.toObject<Team>()
+                            if (teamDoc != null) {
+
+                                //if the team has the same leagueID as stored above it is saved in the array
+                                if (teamDoc.league.equals(leagueID)){
+                                    teamArray.add(teamDoc)
+
                                 }
                             } else {
                                 Log.v("!!!", "no info")

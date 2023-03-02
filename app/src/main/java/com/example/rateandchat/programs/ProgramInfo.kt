@@ -60,6 +60,7 @@ class ProgramInfo : BasicActivity() {
         }
 
         voteBtn.setOnClickListener {
+
             if (type.equals("film")) {
                 val intent = Intent(this, FilmRatingActivity::class.java)
                 intent.putExtra("name", name)
