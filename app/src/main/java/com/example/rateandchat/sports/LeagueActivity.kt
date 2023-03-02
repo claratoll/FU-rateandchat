@@ -36,11 +36,9 @@ class LeagueActivity : BasicActivity() {
         getLeagueData()
     }
 
-
     private fun getLeagueData() {
 
         //get all leagues from firebase and save it in an array which is shown in the recyclerview
-
         db.collection("Leagues")
             .addSnapshotListener { snapshot, e ->
                 listOfLeagues.clear()
@@ -54,7 +52,6 @@ class LeagueActivity : BasicActivity() {
                             Log.v("!!!", "no league")
                         }
                     }
-
                     listOfLeagues.addAll(leagueArray)
                     recyclerView.adapter?.notifyDataSetChanged()
                 }

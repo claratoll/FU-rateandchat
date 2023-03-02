@@ -11,8 +11,6 @@ import com.example.rateandchat.profile.UserListActivity
 import com.google.firebase.auth.FirebaseAuth
 
 open class BasicActivity : AppCompatActivity(){
-
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)

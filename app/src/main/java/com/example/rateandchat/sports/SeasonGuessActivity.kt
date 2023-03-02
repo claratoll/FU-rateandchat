@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.Position.ifUserHasSavedSeason
-import com.example.rateandchat.Position.teamLogoSave
-import com.example.rateandchat.Position.teamNameSave
-import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +27,7 @@ class SeasonGuessActivity : BasicActivity() {
     val teamArray = mutableListOf<Team>()
 
     private lateinit var db: FirebaseFirestore
-    private lateinit var usersRef : CollectionReference
+
     lateinit var auth : FirebaseAuth
 
     private var leagueID = ""
@@ -45,7 +42,6 @@ class SeasonGuessActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_guess)
 
-        val currentUser = FirebaseAuth.getInstance().currentUser?.uid
         auth = Firebase.auth
         db = Firebase.firestore
 
@@ -59,7 +55,6 @@ class SeasonGuessActivity : BasicActivity() {
         saveButton.setOnClickListener {
             saveToFirebase()
         }
-
 
         //leagueID is stored in a variable which will be used to sort the teams correctly
         leagueID = intent.getStringExtra("league name")!!
@@ -75,8 +70,6 @@ class SeasonGuessActivity : BasicActivity() {
         } else {
             getTeamData()
         }
-
-
     }
 
 
@@ -111,11 +104,9 @@ class SeasonGuessActivity : BasicActivity() {
                 db.collection("Users").document(it)
                     .collection("Team").add(saveTeam).addOnSuccessListener { documentReference ->
                         Log.v("!!!", "Success")
-                        Toast.makeText(this@SeasonGuessActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
                         Log.v("!!!", "failure")
-                        Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
                     }
             }
         }

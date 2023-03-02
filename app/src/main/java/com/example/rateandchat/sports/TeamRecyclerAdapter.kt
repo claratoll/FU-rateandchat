@@ -9,9 +9,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rateandchat.Position.teamLogoSave
-import com.example.rateandchat.Position.teamNameSave
-import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
 import com.squareup.picasso.Picasso
@@ -21,11 +18,8 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
 
     val layoutInflater = LayoutInflater.from(context)
 
-
-
     override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.team_item, parent, false)
-
         return ViewHolder(itemView)
     }
 
@@ -35,10 +29,6 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         holder.teamNumberView.text = team.teamNumber.toString()
         Picasso.get().load(team.logoImage).into(holder.imageLogoView)
         holder.teamPosition = position
-
-       // teamNameSave = team.teamName.toString()
-        //teamLogoSave = team.logoImage
-
     }
 
 
@@ -51,43 +41,21 @@ class TeamRecyclerAdapter (val context: Context, val teams : List <Team>): Recyc
         var teamPosition = 0
 
         val moveUpButton = itemView.findViewById<ImageButton>(R.id.moveUpButton)
-
         val moveDownButton = itemView.findViewById<ImageButton>(R.id.moveDownButton)
 
-
         init {
-
-
             moveUpButton.setOnClickListener {
-                teamNumberSave = teamPosition +1
-
-                teamNameSave = teamNameView.text.toString()
-                teamLogoSave = imageLogoView.toString()
-
-
 
                 if (context is SeasonGuessActivity){
                     context.moveUpClick(teamPosition)
                 }
-
-                Log.v("!!!", "teamNumberSave  $teamNumberSave")
-
             }
 
             moveDownButton.setOnClickListener {
-                teamNumberSave = teamPosition +1
-
                 if (context is SeasonGuessActivity){
                     context.moveDownClick(teamPosition)
                 }
-
-                Log.v("!!!", "teamNumberSave  $teamNumberSave")
-
             }
-
         }
-
-
-
     }
 }
