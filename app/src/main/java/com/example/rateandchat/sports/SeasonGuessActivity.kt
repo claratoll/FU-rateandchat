@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rateandchat.BasicActivity
 import com.example.rateandchat.Position.ifUserHasSavedSeason
+import com.example.rateandchat.Position.teamLogoSave
 import com.example.rateandchat.Position.teamNameSave
 import com.example.rateandchat.Position.teamNumberSave
 import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.Team
-import com.example.rateandchat.profile.ProfilePic
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -94,26 +92,33 @@ class SeasonGuessActivity : BasicActivity() {
         adapter.notifyDataSetChanged()
     }
 
+
     fun saveToFirebase(){
-
-        //teamname
-        //teamlogo
-        //alla lag från listan
-
-        val saveTeam = Team ("", teamNumberSave, teamNameSave, leagueLogo, leagueID)
-
-        auth.currentUser?.uid?.let {
-            db.collection("Users").document(it)
-                .collection("Team").add(saveTeam).addOnSuccessListener { documentReference ->
-                    Log.v("!!!", "Success")
-                Toast.makeText(this@SeasonGuessActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
-            }
-                .addOnFailureListener { e ->
-                    Log.v("!!!", "failure")
-                    Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
-                }
-        }
         //and then the user uploads his results to the firebase
+
+        var newTeamName: String
+        var newTeamNumber : Int
+        var newTeamLogo : String
+
+        for (team in listOfTeams){
+            newTeamName = team.teamName.toString()
+            newTeamNumber = team.teamNumber!!
+            newTeamLogo = team.logoImage.toString()
+
+            val saveTeam = Team("", newTeamNumber, newTeamName, newTeamLogo, leagueID)
+
+            auth.currentUser?.uid?.let {
+                db.collection("Users").document(it)
+                    .collection("Team").add(saveTeam).addOnSuccessListener { documentReference ->
+                        Log.v("!!!", "Success")
+                        Toast.makeText(this@SeasonGuessActivity, "DocumentSnapshot added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.v("!!!", "failure")
+                        Toast.makeText(this@SeasonGuessActivity, "Error handling document", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
     }
 
     fun moveUpClick(teamA: Int) {
@@ -143,11 +148,7 @@ class SeasonGuessActivity : BasicActivity() {
         } else {
             val teamB = teamA + 1
 
-            Log.v("!!!", "teamA $teamA")
-            Log.v("!!!", "teamB $teamB")
-
             moveTeams(teamA, teamB)
-            Log.v("!!!", "move down")
         }
         //the number for teamA needs to be collected from the array
         //so that when user presses any down button the number registers and is put as teamA
