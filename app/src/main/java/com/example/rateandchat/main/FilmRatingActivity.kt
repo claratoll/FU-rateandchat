@@ -10,6 +10,7 @@ import com.example.rateandchat.R
 import com.example.rateandchat.dataclass.FilmRating
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,14 @@ class FilmRatingActivity : AppCompatActivity() {
     private lateinit var directingRating : RatingBar
     private lateinit var soundtrackRating : RatingBar
     private lateinit var userAvgRating : RatingBar
+
+    lateinit var plotServerRating : RatingBar
+    lateinit var actingServerRating : RatingBar
+    lateinit var writingServerRating : RatingBar
+    lateinit var directingServerRating : RatingBar
+    lateinit var soundtrackServerRating : RatingBar
+    lateinit var serverAvgRating : RatingBar
+
     private lateinit var filmTitle : TextView
     lateinit var db : FirebaseFirestore
     lateinit var auth : FirebaseAuth
@@ -47,6 +56,13 @@ class FilmRatingActivity : AppCompatActivity() {
         soundtrackRating = findViewById(R.id.soundtrackUserRating)
         userAvgRating = findViewById(R.id.userAvgRatingBar)
 
+        plotServerRating = findViewById(R.id.plotServerRating)
+        actingServerRating = findViewById(R.id.actingServerRating)
+        writingServerRating = findViewById(R.id.writingServerRating)
+        directingServerRating = findViewById(R.id.directingServerRating)
+        soundtrackServerRating = findViewById(R.id.soundtrackServerRating)
+        serverAvgRating = findViewById(R.id.serverAvgRatingBar)
+
         userAvgRating.rating = (plotRating.rating + actingRating.rating + writingRating.rating + directingRating.rating + soundtrackRating.rating)/5
 
         val ratingsRef = db.collection("FilmRatings")
@@ -59,6 +75,7 @@ class FilmRatingActivity : AppCompatActivity() {
 
         if (name != null) {
             readOwnRatingsFromDb(name)
+            readServerRatings(name)
         }
 
 
@@ -144,6 +161,44 @@ class FilmRatingActivity : AppCompatActivity() {
                 Log.d("readRating", "get failed with ", exception)
             }
 
+    }
+
+    private fun readServerRatings(name : String) {
+        val collectionRef = db.collection("FilmRatings")
+
+        collectionRef.whereEqualTo("name", name)
+            .get()
+            .addOnSuccessListener { documents ->
+                var plotServerRatingValue = 0.0f
+                var actingServerRatingValue = 0.0f
+                var writingServerRatingValue = 0.0f
+                var directingServerRatingValue = 0.0f
+                var soundtrackServerRatingValue = 0.0f
+                var numRatings = 0
+
+                for (document in documents) {
+                    val data = document.data
+                    plotServerRatingValue += data["plot"].toString().toFloat()
+                    actingServerRatingValue += data["acting"].toString().toFloat()
+                    writingServerRatingValue += data["writing"].toString().toFloat()
+                    directingServerRatingValue += data["directing"].toString().toFloat()
+                    soundtrackServerRatingValue += data["soundtrack"].toString().toFloat()
+                    Log.d("serverData", data["plot"].toString())
+                    numRatings++
+                }
+
+                if (numRatings > 0) {
+                    plotServerRating.rating = plotServerRatingValue / numRatings
+                    actingServerRating.rating = actingServerRatingValue / numRatings
+                    writingServerRating.rating = writingServerRatingValue / numRatings
+                    directingServerRating.rating = directingServerRatingValue / numRatings
+                    soundtrackServerRating.rating = soundtrackServerRatingValue / numRatings
+                    serverAvgRating.rating = (plotServerRating.rating + actingServerRating.rating + writingServerRating.rating + directingServerRating.rating + soundtrackServerRating.rating) / 5.0f
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d("serverRatings", "Failure to retrieve server ratings")
+            }
     }
 
 }
